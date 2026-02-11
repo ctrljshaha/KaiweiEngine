@@ -1,0 +1,14 @@
+{
+    "file": {
+        "n": [
+            "main.js",
+            "util.js",
+            "Cell.js",
+            "GlobalVariable.js",
+            "game2048.js"
+        ]
+    },
+    "proName": "008_2048",
+    "scene": {
+    }
+}
