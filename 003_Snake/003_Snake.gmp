@@ -1,0 +1,13 @@
+{
+    "file": {
+        "n": [
+            "main.js",
+            "snake.js",
+            "util.js",
+            "physics.js"
+        ]
+    },
+    "proName": "110_snake",
+    "scene": {
+    }
+}
