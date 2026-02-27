@@ -9,7 +9,7 @@ game.setFPS(30); // 设置帧率
 var window = game.getWindow(); // 获取资源对象
 var texture = game.getResource().getTexture("img/logo.png"); // 获取纹理数据对象
 window.setIcon(texture); // 设置主游戏窗口图标
-window.setTitle("开维游戏引擎（game.js）"); // 设置主游戏窗口标题
+window.setTitle("开维游戏引擎"); // 设置主游戏窗口标题
  
 // Scence场景设置
 // ----------------------------------------------------------------------------------------------
@@ -258,9 +258,64 @@ aWebSocket.on("connect",function(){
     aWebSocket.emitMsg("SIO_MESSAGE_UP","SIO_MESSAGE_UP");   // 发送长链接数据
     //aWebSocket.disConnect(); // 关闭长链接
 });
+  
+ // 获取场景里面对象数据，从0开始 
+var nodeArray = scene.getChilds();
+var labTest = nodeArray[0]; // 获取第一个场景对象
+//labTest.setText("世界，你好！"); // lab对象重写设置内容
+
  
-
-
+// ----------------------------------------------------------------------------------
+// 键盘回调方法，键值参考帮助文档中的键值表
+// ----------------------------------------------------------------------------------
+ 
+// 全局类，全局变量和参数
+class GlobalVariable
+{
+  // 键盘键值
+  static KEY_W = 87;
+  static KEY_S = 83;
+  static KEY_A = 65;
+  static KEY_D = 68;
+  static KEY_BOTTOM = 40;
+  static KEY_UP = 38;
+  static KEY_LEFT = 37;
+  static KEY_RIGHT = 39;
+}
+ 
+// 函数功能：键盘回调函数，定义wasd或上下左右健
+// 函数参数：key-键值；action-动作；
+game.setKeyCallBack((key,action)=>{
+  let type = "";
+  if (key == GlobalVariable.KEY_W || key == GlobalVariable.KEY_UP)
+      type = "up";
+  else if (key == GlobalVariable.KEY_S || key == GlobalVariable.KEY_BOTTOM)
+      type =  "down";
+  else if (key == GlobalVariable.KEY_A || key == GlobalVariable.KEY_LEFT)
+      type =  "left";
+  else if (key == GlobalVariable.KEY_D || key == GlobalVariable.KEY_RIGHT)
+      type =  "right";
+   
+  // 控制台中显示调试信息
+  log("key "+key+" action "+action+" type "+type);
+  logic(type) // 调用操控函数
+});
+ 
+// 函数功能：游戏中的键盘操作
+// 函数参数：direction，方向 up down left right
+function logic(direction)
+{
+  // 处理玩家输入的方向，移动所有格子并合并相同数字
+  if(direction == "up") 
+      log("上");
+  else if (direction == "down") 
+      log("下");
+  else if (direction == "left") 
+      log("左");
+  else if (direction == "right") 
+      log("右");
+}
+ 
  
 // 运行游戏
 game.run();
