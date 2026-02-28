@@ -62,6 +62,8 @@
 
 游戏开发环境IDE 用法：https://www.ikaiwei.com/download/gamejs/help.pdf
 
+游戏源码市场：https://gamejs.ikaiwei.com/#/Market
+
 支持Windows10及以上系统。
 
 ## 三、技术支持
