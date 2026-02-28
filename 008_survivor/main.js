@@ -1,4 +1,4 @@
-// 生存在小游戏
+// 生存者小游戏
 
 game.init()
 game.setFPS(10);
