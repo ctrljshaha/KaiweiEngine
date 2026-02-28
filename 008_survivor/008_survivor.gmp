@@ -1,0 +1,19 @@
+{
+    "file": {
+        "c": {
+        },
+        "img": [
+        ],
+        "n": [
+            "main.js",
+            "Character.js",
+            "util.js",
+            "physics.js",
+            "GlobalVariable.js",
+            "survivor.js"
+        ]
+    },
+    "proName": "008_survivor",
+    "scene": {
+    }
+}
