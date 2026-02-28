@@ -1,0 +1,17 @@
+{
+    "file": {
+        "c": {
+        },
+        "n": [
+            "main.js",
+            "Airplane.js",
+            "AirplaneBattle.js",
+            "util.js",
+            "physics.js",
+            "GlobalVariable.js"
+        ]
+    },
+    "proName": "007_airplane",
+    "scene": {
+    }
+}
