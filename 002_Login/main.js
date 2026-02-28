@@ -1,5 +1,9 @@
 // 基础控件实例
-  
+
+// AI模型应用：此实例包含几乎所有基本控件函数，可以给AI模型，例如：DeepSeek，Gemini，豆包等
+// AI游戏生成：以实例为基础自动生成AI游戏代码，例如贪吃蛇，飞机大战等小游戏
+// AI提示文本："下面是开维游戏引擎的代码演示，根据这个代码，写一个sinx的函数演示代码。 代码如下：(拷贝以下代码)"
+   
 // 初始化游戏引擎
 game.init(); // 默认窗口大小为800*600
 game.setFPS(30); // 设置帧率
@@ -241,6 +245,7 @@ log("\nHttp网络类 -----------------------------------------------------------
  http.post("https://ctrljs.ikaiwei.com/api/test/request_logs.do?","sff=sf111&se=1",(str)=>{
  });
   
+  
  
 // websocket类
 // ----------------------------------------------------------------------------------------------
@@ -258,6 +263,7 @@ aWebSocket.on("connect",function(){
     aWebSocket.emitMsg("SIO_MESSAGE_UP","SIO_MESSAGE_UP");   // 发送长链接数据
     //aWebSocket.disConnect(); // 关闭长链接
 });
+ 
   
  // 获取场景里面对象数据，从0开始 
 var nodeArray = scene.getChilds();
@@ -315,6 +321,7 @@ function logic(direction)
   else if (direction == "right") 
       log("右");
 }
+ 
  
  
 // 运行游戏
