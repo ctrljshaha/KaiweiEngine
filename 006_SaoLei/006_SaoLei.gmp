@@ -1,0 +1,16 @@
+{
+    "file": {
+        "c": {
+        },
+        "n": [
+            "main.js",
+            "Card.js",
+            "LevelScene.js",
+            "util.js",
+            "MineSweep.js"
+        ]
+    },
+    "proName": "106_saolei",
+    "scene": {
+    }
+}
