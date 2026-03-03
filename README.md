@@ -79,6 +79,14 @@
 
 ## 四、实例演示
 
+普通代码视频：
+
+https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example
+
+AI代码视频：
+
+https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai
+
 001.Hello world
 
 https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html
