@@ -87,6 +87,8 @@ https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html
 
 https://www.ikaiwei.com/gamejs/example/002_Login_html/index.html
 
+[![]](https://www.ikaiwei.com/gamejs/vid/105/105_gemini.mp4)
+
 <video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/002/002.mp4" type="video/mp4"></video>
 
 003.贪吃蛇
