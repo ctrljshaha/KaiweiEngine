@@ -87,6 +87,7 @@ AI代码视频：
 
 https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai
 
+<!--
 001.Hello world
 
 https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html
@@ -171,3 +172,5 @@ https://www.ikaiwei.com/gamejs/example/104_ai_fireworks_html/index.html
 https://www.ikaiwei.com/gamejs/example/105_ai_douyincar_html/index.html
 
 <video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/105/105_gemini.mp4" type="video/mp4"></video>
+
+-->
