@@ -1,6 +1,6 @@
 # 欢迎使用“开维游戏引擎” ！
 
-<img src="res/pc100.jpg" width="700">
+<img src="https://www.ikaiwei.com/gamejs/api/res/pc100.jpg" width="700">
 
 ## 一、简介
 
