@@ -79,11 +79,11 @@
 
 ## 四、实例演示
 
-普通代码视频：
+普通代码 游戏演示视频：
 
 https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example
 
-AI代码视频：
+AI代码 游戏演示视频：
 
 https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai
 
