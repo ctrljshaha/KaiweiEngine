@@ -21,7 +21,7 @@ var nextAutoLaunchFrame = 60; // 下一次随机发射的目标帧
 
 // 2. UI 提示标签：绿色字体，黑底儿
 var labHint = new Label();
-labHint.setPosition(300, 20);
+labHint.setPosition(30, 20);
 labHint.setSize(200, 40);
 labHint.setColor(0, 0, 0, 1);       // 纯黑背景
 labHint.setTextColor(0, 1, 0, 1);   // 纯绿文字
