@@ -44,7 +44,7 @@ class SinDemo {
     static maxX = w;        // 屏幕宽度
     static centerY = h/2;     // 屏幕中心 y 坐标（800x600 下中心为300）
     static amplitude = 200;   // 振幅（像素）
-    static scale = (2 * Math.PI) / 800; // 将 0~800 映射到 0~2π
+    static scale = (2 * Math.PI) / w; // 将 0~800 映射到 0~2π
     static valueLabel;        // 显示数值的标签
 
     constructor() {
