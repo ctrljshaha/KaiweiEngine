@@ -1,9 +1,16 @@
 // Hello world 程序实例
   
-// 初始化游戏引擎
-game.init(); // 默认窗口大小为800*600
-//game.initSize(1024, 768); // 设置游戏主窗口大小，1024*768
-game.setFPS(10); // 设置帧率
+// 初始化游戏引擎， 根据平台设置屏幕分辨率
+var system = game.getSystemName(); // 获取系统名称
+if (system =="WINDOWS")
+    game.init() // 默认窗口大小为800*600
+else if (system =="WEB")
+    game.init() // 默认为全屏 
+else if(system =="WEIXIN")
+    game.initSize(canvas.width,canvas.height); // 微信窗口。微信因为有大小限制，字体库需用工具精简大小
+ 
+// 设置帧率
+game.setFPS(10); 
  
 // 获取资源
 var res = game.getResource(); // 获取资源对象
@@ -13,7 +20,7 @@ var texture = res.getTexture("img/logo.png"); // 获取纹理数据对象
 // 主窗口设置
 var window = game.getWindow(); //获取游戏窗口
 window.setIcon(texture); // 设置窗口图标
-window.setTitle("开维游戏引擎（Game.js）"); // 设置窗口标题
+window.setTitle("开维游戏引擎"); // 设置窗口标题
 var w = window.getWidth(); // 屏幕宽带
 var h = window.getHeight(); // 屏幕高度
  
@@ -28,10 +35,12 @@ scene.upDate((time)=>{ // 界面刷新回调函数，根据fps帧率的值回调
  
 // 标签设置
 var lab = new Label(); 
-lab.setPosition(w/4, h/2.5);  // 标签位置横坐标，纵坐标。居中 或坐标lab.setPosition(160,240);
-lab.setSize(500,50);    // 标签宽，高
+var labW = 200;
+var labH = 120;
+lab.setSize(labW, labH);   // 标签宽，高
+lab.setPosition((w-labW)/2, (h-labH)/2); // 动态计算位置：(w-labW)/2是横向正中心；(h-labH)/2是纵向正中心
 lab.setColor(0,0,0,0);  // 标签背景颜色为黑色并透明
-lab.setText("Hello world！你好，世界！"); // 标签文字
+lab.setText("Hello world！\n\n你好，世界！"); // 标签文字
 lab.setTextColor(0,255,0,1);  // 标签字体颜色
 lab.setFont("font/st.ttf",30); // 标签汉字字库，字体大小
 scene.addNode(lab); // 把标签增加到场景中
