@@ -1,3 +1,7 @@
+
+// 飞翔的小鸟游戏（像素小鸟）
+// 微信小游戏导出时，竖屏导出。 适配需要根据微信屏幕宽高适配，具体参考002实例
+
 /*好的，我完全明白你的意思了。我们要保留你提供的这版代码中所有的功能（包括**金币逻辑**、**金币旋转动画**、**动态航速计算**等），并在此基础上精准地加入“**死亡 1s 冷却**”以及“**死后保持小鸟振翅**”的逻辑。
 
 为了让小鸟在背景静止时依然能扇动翅膀，我将小鸟的 `animTimer` 逻辑移到了 `if (gameState == STATE_OVER)` 判断的前面。
@@ -122,7 +126,7 @@ labMenu.setSize(260, 100);
 labMenu.setFont("font/st.ttf", 25); 
 labMenu.setColor(0, 0, 0, 0); 
 labMenu.setTextColor(1, 0, 0, 1);
-labMenu.setText("点击屏幕开始");
+labMenu.setText("点击开始");
 scene.addNode(labMenu);
 
 var clickLayer = new Sprite();
