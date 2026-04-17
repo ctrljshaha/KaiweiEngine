@@ -2,15 +2,38 @@
 
 // sin(x) 函数演示 - 基于开维游戏引擎
 
-// 初始化游戏引擎
-game.init(); // 默认窗口大小800*600
-game.setFPS(30); // 设置帧率
+// 初始化游戏引擎，根据平台设置屏幕分辨率
+// ----------------------------------------------------------------------------------------------
+var system = game.getSystemName(); // 获取系统名称
+var w, h; // 屏幕宽高
+var window;
+var screenType; // 横屏还是竖屏
 
+if (system =="WINDOWS" || system =="WEB")
+{
+    game.init() // windows默认窗口大小为800*600;web网页默认全屏
+    window = game.getWindow(); // 获取资源对象
+    w = window.getWidth();  // 屏幕宽带
+    h = window.getHeight(); // 屏幕高度
+}
+else if(system =="WEIXIN")
+{
+    game.initSize(canvas.width,canvas.height); // 微信窗口
+    window = game.getWindow(); // 获取资源对象
+    w = canvas.width; // 微信窗口宽度
+    h = canvas.height;// 微信窗口高度
+}
+
+// 判断横屏还是竖屏
+screenType = (w>h)?"Landscape":"Portrait"; // 横屏Landscape 竖屏Portrait
+game.setFPS(30); // 设置帧率
+ 
 // 游戏主窗口设置图标和标题
-var window = game.getWindow();
-var texture = game.getResource().getTexture("img/logo.png");
-window.setIcon(texture);
-window.setTitle("sin(x) 函数演示 - 开维游戏引擎");
+// ----------------------------------------------------------------------------------------------
+var texture = game.getResource().getTexture("img/logo.png"); // 获取纹理数据对象
+window.setIcon(texture); // 设置主游戏窗口图标
+window.setTitle("开维游戏引擎 - sin(x) 函数演示"); // 设置主游戏窗口标题
+
 
 // ==================== sin(x) 演示类 ====================
 class SinDemo {
@@ -18,8 +41,8 @@ class SinDemo {
     static ball;             // 移动的小球（红色）
     static points = [];      // 存储轨迹点（蓝色）
     static step = 0;         // 当前 x 坐标（像素）
-    static maxX = 800;        // 屏幕宽度
-    static centerY = 300;     // 屏幕中心 y 坐标（800x600 下中心为300）
+    static maxX = w;        // 屏幕宽度
+    static centerY = h/2;     // 屏幕中心 y 坐标（800x600 下中心为300）
     static amplitude = 200;   // 振幅（像素）
     static scale = (2 * Math.PI) / 800; // 将 0~800 映射到 0~2π
     static valueLabel;        // 显示数值的标签
@@ -36,22 +59,22 @@ class SinDemo {
 
         // 设置背景色（浅灰色，使用 Node）
         let bg = new Node();
-        bg.setSize(800, 600);
+        bg.setSize(w, h);
         bg.setPosition(0, 0);
         bg.setColor(0.9, 0.9, 0.9, 1.0);
         scene.addNode(bg);
 
         // 绘制 x 轴（黑色水平线）
         let axisX = new Node();
-        axisX.setSize(800, 1);
+        axisX.setSize(w, 1);
         axisX.setPosition(0, SinDemo.centerY);
         axisX.setColor(0, 0, 0, 1);
         scene.addNode(axisX);
 
         // 绘制 y 轴（黑色垂直线）
         let axisY = new Node();
-        axisY.setSize(1, 800);
-        axisY.setPosition(400, 0);
+        axisY.setSize(1, h);
+        axisY.setPosition(w/2, 0);
         axisY.setColor(0, 0, 0, 1);
         scene.addNode(axisY);
 
@@ -64,7 +87,7 @@ class SinDemo {
 
         // 创建显示数值的标签
         SinDemo.valueLabel = new Label();
-        SinDemo.valueLabel.setPosition(10, 10);
+        SinDemo.valueLabel.setPosition(10, 40);
         SinDemo.valueLabel.setSize(250, 30);
         SinDemo.valueLabel.setFont("font/st.ttf", 16);
         SinDemo.valueLabel.setTextColor(0, 0, 0, 1);
