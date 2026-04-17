@@ -6,8 +6,13 @@ class Util{
     // 函数功能：创建背景场景，并返回场景和背景节点
     static bj=(options={})=>{
 
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
+        let w = GlobalVariable.w;
+        let h = GlobalVariable.h;
+        
+        var pressx = 0,pressy = 0;
+        
         let config = {
             x: 0,
             y: 0,
@@ -21,6 +26,40 @@ class Util{
         let scene = new Scene();
         GlobalVariable.scene = scene;
         game.pushScene(scene);
+        
+        scene.onPress((x,y)=>{
+            pressx = x;
+            pressy = y;
+        });
+        scene.onRelease((x,y)=>{
+            var ox = x-pressx;
+            var oy = y-pressy;
+            let type = "";
+            if( Math.abs(ox)>Math.abs(oy)){
+                //左右
+                if(ox>0){
+                    //右
+                    type =  "right";
+                }
+                else{
+                     type =  "left";
+                }
+            }
+            else {
+                //上下
+                if(oy>0){
+                    //下
+                     type =  "down";
+                }
+                else{
+                     type = "up";
+                }
+            }
+            
+           
+            //log(type);
+            Game2048.logic(type)
+        });
 
          // 添加游戏背景图   
         const cache_res = game.getResource();
@@ -45,6 +84,7 @@ class Util{
             height: 30,
             clickCb: undefined,
             texture: "",
+            widthCenter:false,
             ...options
         };
         if(!GlobalVariable.scene){
@@ -59,11 +99,15 @@ class Util{
         sprite.setPosition(config.x, config.y);
         GlobalVariable.scene.addNode(sprite);
 
-        sprite.click(()=>{
-            if (config.clickCb !== undefined && config.clickCb instanceof Function){
-                config.clickCb();
-            }
-        });
+        if (config.clickCb !== undefined && config.clickCb instanceof Function){
+            sprite.click(()=>{
+                    config.clickCb();
+            });
+        }
+        if (config.widthCenter){
+            this.center(sprite)
+        }
+
         return sprite;
     }
 
@@ -85,6 +129,7 @@ class Util{
             text: "",
             fontSize: 20,
             textColor: [1,0,0],
+            widthCenter:false,
             ...options
         };
 
@@ -108,6 +153,11 @@ class Util{
         lab.setColor(1,1,1,0);
         // lab.setbackgroundColor(0,0,0,0);
         GlobalVariable.scene.addNode(lab);
+
+        if (config.widthCenter){
+            this.center(lab)
+        }
+
         return lab;
     }
 
@@ -123,6 +173,31 @@ class Util{
         let height = node.getSize().y;
 
         return {x:x, y:y, width:width, height:height};
+    }
+
+    static w(percent){
+        let w = game.getWindow().getWidth();
+        let p = percent/100;
+        return w * p;
+    }
+
+    static h(percent){
+        let h = game.getWindow().getHeight();
+        let p = percent/100;
+        return h * p;
+    }
+
+    static center(node){
+        if(!node){
+            return;
+        }
+
+        let {x,y,width,height} = this.getPosition(node);
+
+        let w = game.getWindow().getWidth();
+        let centerX = (w-width)/2
+
+        node.setPosition(centerX,y);
     }
 
 }

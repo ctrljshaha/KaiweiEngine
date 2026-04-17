@@ -17,5 +17,8 @@ class GlobalVariable{
 
     // 场景
     static scene;
+    
+    static w; // 屏幕宽度
+    static h; // 屏幕高度
 
 }

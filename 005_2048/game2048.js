@@ -10,6 +10,9 @@ class Game2048 {
         Game2048.init();
     }
 
+
+
+
     // 函数功能：初始化游戏
     static init(){
         this.cells = []; // 格子数组
@@ -20,41 +23,59 @@ class Game2048 {
         let {scene} = Util.bj();
 
         // 显示游戏介绍
+        // 549 241
         Util.newSprite({
-            x: w/10+20,
-            y: 0,
-            width: 552,
-            height: 231,
+            x: Util.w(10),
+            y: 10,
+            widthCenter:true,
+            width: 300,
+            height: Util.h(10),
             texture: 'header.png',
+            clickCb: ()=>{
+            }
+        })
+
+        Util.newSprite({
+            x: Util.w(10),
+            y: 10+Util.h(10),
+            widthCenter:true,
+            width: 300,
+            height: 14,
+            texture: 'line.png',
             clickCb: ()=>{
             }
         })
 
         //介绍文字
         Util.newText({
-            x: w/5 - 30,
-            y: 140,
-            text: "玩法： 使用WASD键，或上下左右键，移动数字方块。相邻的两个方块\n                 数字相同，可以合并成一个。",
-            width:600,
-            height: 70,
+            x: Util.w(4),
+            y: Util.h(18),
+            widthCenter:true,
+            text: "玩法： 使用WASD键，或上下左右键，\n移动数字方块。相邻的两个方块\n数字相同，可以合并成一个。",
+            width:290,
+            height: Util.h(15),
             fontSize: 18,
             textColor:[0,0,0]
         })
-        /*Util.newText({
-            x: w/3,
-            y: 180,
-            text: "数字相同，可以合并成一个。",
-            width:300,
-            fontSize: 18,
-            textColor:[0,0,0]
-        })*/
+
+        Util.newSprite({
+            x: Util.w(10),
+            y: Util.h(35),
+            widthCenter:true,
+            width: 300,
+            height: 14,
+            texture: 'line.png',
+            clickCb: ()=>{
+            }
+        })
 
         // 重新开始按钮
         Util.newSprite({
-            x: w/3+25,
-            y: h-65,
-            width: 147,
-            height: 53,
+            x: Util.w(33),
+            y: Util.h(91),
+            widthCenter:true,
+            width:  Util.w(30),
+            height: Util.h(8),
             texture: 'restart.png',
             clickCb: ()=>{
                 Game2048.init(); // 点击回调函数，重新开始游戏
@@ -63,28 +84,36 @@ class Game2048 {
 
         // 分数
         this.score = 0;
+        let margitLeft = Util.w(20);
+        let marginTop = Util.h(50);
         this.scoreText = Util.newText({
-            x: w/3 + 60,
-            y: h/2 - 45,
-            text: "分数："+this.score+"",
-            width:300
+            x: margitLeft + 60,
+            y: marginTop - 45,
+            widthCenter:true,
+            text: "分数："+this.score,
+            fontSize: 18,
+            width:100
         })
 
         // 格子背景框
-        Util.newSprite({
-            x: w/3 - 15,
-            y: h/2 - 15,
+        let cellBg = Util.newSprite({
+            x: margitLeft - 15,
+            y: marginTop - 15,
+            widthCenter:true,
             width: 240,
             height: 240,
             texture: 'cellbg.png',
             clickCb: ()=>{
             }
-        })
+        });
+
+
+        let {x} = Util.getPosition(cellBg);
 
 
         // 生成格子
-        let cellX = w/3;
-        let cellY = h/2;
+        let cellX = x+15;
+        let cellY = marginTop;
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
                 let cell = new Cell(0,cellX+j*53,cellY+i*53,i+1,j+1); // 创建方格
@@ -105,7 +134,7 @@ class Game2048 {
         if(GlobalVariable.gameOver){
             return;
         }
-        
+
         // 处理玩家输入的方向，移动所有格子并合并相同数字
         if(direction == "up") {
             // 向上移动：从第一列到第四列逐列处理
@@ -178,7 +207,7 @@ class Game2048 {
         this.scoreText.setText("分数："+this.score+"");
         // 判断游戏是否结束
         this.gameEnd();
-        
+
        audio.playSound("dj.wav"); // 播放音效
 
     }
@@ -356,6 +385,7 @@ class Game2048 {
             let h = game.getWindow().getHeight();
             Util.newText({
                 text: "游戏结束",
+                widthCenter:true,
                 x: w/3 + 60,
                 y: h/2 - 70,
                 width:90,
