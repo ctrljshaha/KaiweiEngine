@@ -27,8 +27,8 @@ class Car {
     }
 
     static init(){
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
         let bgLocationY = h - this.roadHeight;
         let {scene,backgroundNode} = Util.bj({
             x:0,
@@ -39,11 +39,11 @@ class Car {
         });
         this.scene = scene;
         this.createJp(200,200)
-        this.score_text = Util.newText(w-50,20,""+this.score,30,20);
+        this.score_text = Util.newText(w-50,40,""+this.score,30,30);
         // 重新开始按钮
         Util.newSprite({
             x: 10,
-            y: 5,
+            y: 30,
             width: 80,
             height: 40,
             texture: 'zaicitiaozhan.png',
@@ -80,7 +80,7 @@ class Car {
                 }
 
                 if(this.gameOver){
-                    Util.newText(w/2-50,20,"游戏结束",85,30);
+                    Util.newText(w/2-50,40,"游戏结束",85,30);
                     return;
                 }
             }
@@ -133,8 +133,8 @@ class Car {
     }
 
     static changePosition(node,direction){
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
         let position = Util.getPosition(node);
         let x = position.x;
         let y = position.y;
