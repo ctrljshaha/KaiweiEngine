@@ -26,7 +26,7 @@ labHint.setSize(200, 40);
 labHint.setColor(0, 0, 0, 1);       // 纯黑背景
 labHint.setTextColor(0, 1, 0, 1);   // 纯绿文字
 labHint.setFont("font/st.ttf", 18);
-labHint.setText("点击屏幕发射烟花");
+labHint.setText("点击发射烟花");
 scene.addNode(labHint);
 
 // 3. 函数：爆炸效果 (Explosion)
