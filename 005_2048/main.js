@@ -105,25 +105,6 @@ var SwipeControls = {
 };
 
 
-/*
-// 使用封装好的滑动控制
-SwipeControls.init(scene, (direction) => {
-    //var pos = player.getPosition();
-    //var step = 50; // 每次滑动的移动距离
-    
-    type = direction;
-
-    /*if (direction === "UP")    player.setPosition(pos.x, pos.y - step);
-    if (direction === "DOWN")  player.setPosition(pos.x, pos.y + step);
-    if (direction === "LEFT")  player.setPosition(pos.x - step, pos.y);
-    if (direction === "RIGHT") player.setPosition(pos.x + step, pos.y);
-    
-    // 你甚至可以在这里加上滑动的音效
-    audio.playSound("sound/swipe.wav"); 
-});
-*/
-
-
 // 运行游戏
 game.run();
 
