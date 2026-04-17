@@ -4,10 +4,10 @@
  */
 
 // 1. 初始化引擎
-game.init(); 
+game.initSize(420, 750); 
 game.setFPS(60); // 提高帧率使物理模拟更平滑
-const WINDOW_HEIGHT = 600;
-const WINDOW_WIDTH = 800;
+const WINDOW_HEIGHT = 750;
+const WINDOW_WIDTH = 420;
 
 // 2. 场景与资源设置
 var scene = new Scene();
@@ -23,7 +23,7 @@ const JUMP_FORCE = -15;    // 点击时的向上冲力
 
 // 4. 物理对象状态
 let ballState = {
-    x: 400,
+    x: 190,
     y: 100,
     vx: 0,
     vy: 0,
