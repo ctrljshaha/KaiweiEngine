@@ -33,13 +33,13 @@ class Snake{
         this.createSnakeButton(100,100)
         this.createJp(200,200)
 
-        let w = game.getWindow().getWidth();
-        this.score_text = Util.newText(w-50,20,""+this.score,30,20);
+        //let w = game.getWindow().getWidth();
+        this.score_text = Util.newText(w-50,40,""+this.score,30,20);
 
         // 重新开始按钮
         Util.newSprite({
             x: 10,
-            y: 5,
+            y: 25,
             width: 80,
             height: 40,
             texture: 'zaicitiaozhan.png',
@@ -72,7 +72,7 @@ class Snake{
 
                     this.changePosition(this.snake_[0],this.type);
                     if(this.gameOver){
-                        Util.newText(w/2-50,20,"游戏结束",85,30);
+                        Util.newText(w/2-50,40,"游戏结束",85,30);
                         return;
                     }else{
                         // 替换位置
@@ -131,8 +131,8 @@ class Snake{
     }
 
     static changePosition(node,direction){
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
         let position = Util.getPosition(node);
         let x = position.x;
         let y = position.y;

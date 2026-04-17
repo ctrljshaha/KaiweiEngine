@@ -7,8 +7,8 @@ class Util{
 
         const cache_ = game.getResource();
 
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
 
         let bg = cache_.getTexture("mainbg.png");
         const node = new Sprite();
@@ -17,7 +17,67 @@ class Util{
         node.setPosition(0,0);
         node.setColor(1,1,1,1);
         scene.addNode(node);
-
+        
+        
+        // 微信手机显示游戏手柄，控制上下左右键
+        // ----------------------------------------------------------------------------------------------
+        if(system =="WEIXIN")
+        {
+            // 上下左右按钮图
+            var texUp    = res.getTexture("up.png");
+            var texDown  = res.getTexture("down.png");
+            var texLeft  = res.getTexture("left.png");
+            var texRight = res.getTexture("right.png");
+            
+            // 手柄布局参数
+            var sprW = 40;  
+            var sprH = 40;  
+            var gap  = 1;   
+            var startX = (w > h) ? 30 : (w - sprW * 3 - gap * 2) / 2;
+            var startY = h - (sprH * 3 + gap * 2) - 80;    
+            
+            // 四个独立精灵按钮
+            var sprUp = new Sprite();
+            sprUp.setTexture(texUp);
+            sprUp.setColor(1, 1, 1, 0.5); // 设置透明度：前三个参数 1,1,1 表示保持原图颜色，0.5 表示 50% 透明度
+            sprUp.setSize(sprW, sprH);
+            sprUp.setPosition(startX + sprW + gap, startY);
+            sprUp.click(() => { logic("up"); });
+            scene.addNode(sprUp);
+            
+            var sprDown = new Sprite();
+            sprDown.setTexture(texDown);
+            sprDown.setColor(1, 1, 1, 0.5); // 设置透明度：前三个参数 1,1,1 表示保持原图颜色，0.5 表示 50% 透明度
+            sprDown.setSize(sprW, sprH);
+            sprDown.setPosition(startX + sprW + gap, startY + (sprH + gap) * 2);
+            sprDown.click(() => { logic("down"); });
+            scene.addNode(sprDown);
+            
+            var sprLeft = new Sprite();
+            sprLeft.setTexture(texLeft);
+            sprLeft.setColor(1, 1, 1, 0.5); // 设置透明度：前三个参数 1,1,1 表示保持原图颜色，0.5 表示 50% 透明度
+            sprLeft.setSize(sprW, sprH);
+            sprLeft.setPosition(startX, startY + sprH + gap);
+            sprLeft.click(() => { logic("left"); });
+            scene.addNode(sprLeft);
+            
+            var sprRight = new Sprite();
+            sprRight.setTexture(texRight);
+            sprRight.setColor(1, 1, 1, 0.5); // 设置透明度：前三个参数 1,1,1 表示保持原图颜色，0.5 表示 50% 透明度
+            sprRight.setSize(sprW, sprH);
+            sprRight.setPosition(startX + (sprW + gap) * 2, startY + sprH + gap);
+            sprRight.click(() => { logic("right"); });
+            scene.addNode(sprRight);
+        
+            // 核心事件逻辑（在此处统一处理显示和业务）
+            function logic(dir) 
+            {
+                //log("逻辑触发 -> " + dir);
+                Snake.type = dir;
+            }
+        }
+    
+    
         return scene;
     }
 
