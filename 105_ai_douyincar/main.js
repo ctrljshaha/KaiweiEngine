@@ -39,7 +39,7 @@ giftBanner.setTexture(resGiftBg);
 giftBanner.setSize(250, 60);
 giftBanner.setPosition(50, 100); 
 giftBanner.setFont("font/st.ttf", 20);
-giftBanner.setText("  神豪 送出 氮气超跑");
+giftBanner.setText("  神豪   送出超跑");
 giftBanner.setColor(255, 0, 0, 0.2);    
 giftBanner.setTextColor(255, 0, 0, 1);   
 scene.addNode(giftBanner);
