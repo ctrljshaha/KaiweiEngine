@@ -19,4 +19,10 @@ class GlobalVariable{
     static score = 0;
     // 分数游戏对象
     static scoreText;
+    
+    static w; // 屏幕宽度
+    static h; // 屏幕高度
+    
+    static aAirplaneBattle;
+    
 }

@@ -19,6 +19,9 @@ class Airplane {
     createBulletTime = 0;
     scene;
 
+    isPressPlane = false;
+    offsetx=0;
+    offsety=0;
     // 获取飞机对象
     getSprite = function () {
         return this.sprite;
@@ -52,16 +55,40 @@ class Airplane {
         node.setColor(1, 1, 1,1);
         this.scene.addNode(node);
         this.sprite = node;
-
+    
         // 创建子弹
         this.createBullets(x, y);
+        
+
+        // 按住飞机拖动的实现，按住和移动的回调
+        this.scene.onPress((x,y)=>{
+            if(userAirPlane.getSprite().isContainPostion(x,y))
+            {
+                this.isPressPlane = true;
+                
+                let pos = Util.getPosition(userAirPlane.getSprite());
+                this.offsetx = pos.x-x;
+                this.offsety = pos.y-y;
+            }
+            else{
+                this.isPressPlane = false;
+            }
+        });
+        this.scene.onMove((x,y)=>{
+            if(this.isPressPlane)
+            userAirPlane.getSprite().setPosition(x+this.offsetx,y+this.offsety);
+        });
+        
+        
         // 更新事件
         node.upDate(()=>{
             if(GlobalVariable.gameOver){
                 return;
             }
-            let w = game.getWindow().getWidth();
-            let h = game.getWindow().getHeight();
+            //let w = game.getWindow().getWidth();
+            //let h = game.getWindow().getHeight();
+            let w = GlobalVariable.w;
+            let h = GlobalVariable.h;
 
             let x;
             let y;
@@ -146,8 +173,10 @@ class Airplane {
         this.heartUpdate()
 
         if (GlobalVariable.gameOver) {
-            let w = game.getWindow().getWidth();
-            let h = game.getWindow().getHeight();
+            //let w = game.getWindow().getWidth();
+            //let h = game.getWindow().getHeight();
+            let w = GlobalVariable.w;
+            let h = GlobalVariable.h;
             Util.newText({
                 text: "游戏结束",
                 x: w/3 + 70,
@@ -188,8 +217,10 @@ class Airplane {
 
     // 改变位置
     resetPos() {
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
+        let w = GlobalVariable.w;
+        let h = GlobalVariable.h;
 
         if (this.sprite) {
             let x = Math.floor(Math.random() * (w - 100)) + 50;
@@ -352,7 +383,7 @@ class Airplane {
         let list = this.heartList;
         if(list && list.length === 0){
             for (let i = 0; i < this.heart; i++) {
-                list.push(this.createHeart(10 + i * 32, 5,true));
+                list.push(this.createHeart(10 + i * 32, 40,true));
             }
         }else {
             const cache_ = game.getResource();

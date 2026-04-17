@@ -10,9 +10,13 @@ class AirplaneBattle{
     }
 
     init(){
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
+        let w = GlobalVariable.w;
+        let h = GlobalVariable.h;
 
+        GlobalVariable.aAirplaneBattle = this;
+        
         GlobalVariable.gameOver = false;
         Util.bj({picture: "mainbg.png"});
 
@@ -23,7 +27,7 @@ class AirplaneBattle{
         GlobalVariable.score = 0;
         GlobalVariable.scoreText = Util.newText({
             x: w - 120,
-            y: 10,
+            y: 40,
             text: "分数："+GlobalVariable.score+"",
             width:300
         })
@@ -91,8 +95,11 @@ class AirplaneBattle{
 
     // 创建飞机
     createHeroAirplane() {
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
+        let w = GlobalVariable.w;
+        let h = GlobalVariable.h;
+        
         let myAirplaneX = (w / 2)-50;
         let myAirplaneY = h - 80;
         return  new Airplane(myAirplaneX,myAirplaneY,64,64,false);
@@ -100,7 +107,7 @@ class AirplaneBattle{
 
     // 创建敌方飞机
     createEnemy(){
-        let w = game.getWindow().getWidth();
+        //let w = game.getWindow().getWidth();
         const x = Math.floor(Math.random() * (w - 100)) + 50;
         const enemyAirplane = new Airplane(x,0,64,64,true,this.heroAirplane);
         this.enemys.push(enemyAirplane);
