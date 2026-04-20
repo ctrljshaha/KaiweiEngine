@@ -25,8 +25,8 @@ class Survivor{
         // 分数
         GlobalVariable.score = 0;
         GlobalVariable.scoreText = Util.newText({
-            x: w - 120,
-            y: 10,
+            x: w - 180,
+            y: 8,
             text: "分数："+GlobalVariable.score+"",
             width:300
         })

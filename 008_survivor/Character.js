@@ -25,6 +25,7 @@ class Character {
 
     // 构造函数
     constructor(x, y, enemy,hero) {
+        this.scene = GlobalVariable.scene;
         this.enemy = enemy;
         this.moveTime = new Date().getTime();
         this.hero = hero;
@@ -48,6 +49,29 @@ class Character {
             height: 100,
             texture: img,
         });
+
+
+        if (enemy == 0) {
+            // 按住飞机拖动的实现，按住和移动的回调
+            this.scene.onPress((x, y) => {
+                if (this.sprite.isContainPostion(x, y)) {
+                    this.isPress = true;
+
+                    let pos = Util.getPosition(this.sprite);
+                    this.offsetx = pos.x - x;
+                    this.offsety = pos.y - y;
+                } else {
+                    this.isPress = false;
+                }
+            });
+            this.scene.onMove((x, y) => {
+                if (this.isPress)
+                    this.sprite.setPosition(x + this.offsetx, y + this.offsety);
+            });
+        }
+
+
+
         // 更新事件
         this.sprite.upDate((time) => {
             this.handleUpdate(time);
@@ -263,9 +287,9 @@ class Character {
 
     // 函数功能：向量化： 保持方向不变，将长度缩小
     normalization(pos) {
-        // 处理无效输入
+        // 1. 处理无效输入或零向量
         if (!pos || (pos.x === 0 && pos.y === 0)) {
-            return {x: 0, y: 0}; // 零向量无法向量化，返回零向量
+            return { x: 0, y: 0 };
         }
 
         let x = pos.x;
@@ -273,12 +297,18 @@ class Character {
 
         // 倍数
         let m = 8;
-        // 计算向量的模（长度）
-        let number = Math.sqrt(x * x + y * y);
-        x = Math.ceil((x / number) * m);
-        y = Math.ceil((y / number) * m);
+        // 2. 计算向量的模（长度）: length = sqrt(x^2 + y^2)
+        let magnitude = Math.sqrt(x * x + y * y);
 
-        return {x, y};
+        // 3. 归一化：将分量除以模，得到单位向量（长度为1）
+        // 直接返回浮点数以保持精度和方向
+        const x1 = x / magnitude;
+        const y1 = y / magnitude;
+        log("x1:"+x1+" y1:"+y1)
+        return {
+            x: x1*m,
+            y: y1*m
+        };
     }
 
     // 函数功能：检测是否击中敌人
