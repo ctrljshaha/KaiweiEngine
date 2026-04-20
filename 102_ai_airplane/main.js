@@ -1,15 +1,41 @@
 
 // ==============================================================================================
 // 飞机大战：音效增强版 (纯黑背景 + 星空拉伸 + 音效)
+// 增加手柄，适配导出微信小游戏
 // ==============================================================================================
 
-game.init(); 
-game.setFPS(60); 
+
+
+// 初始化游戏引擎，根据平台设置屏幕分辨率
+// ----------------------------------------------------------------------------------------------
+var system = game.getSystemName(); // 获取系统名称
+var w, h; // 屏幕宽高
+var window;
+var screenType; // 横屏还是竖屏
+
+if (system =="WINDOWS" || system =="WEB")
+{
+    game.init(); // windows默认窗口大小为800*600;web网页默认全屏
+    window = game.getWindow(); // 获取资源对象
+    w = window.getWidth();  // 屏幕宽带
+    h = window.getHeight(); // 屏幕高度
+}
+else if(system =="WEIXIN")
+{
+    game.initSize(canvas.width,canvas.height); // 微信窗口
+    window = game.getWindow(); // 获取资源对象
+    w = canvas.width; // 微信窗口宽度
+    h = canvas.height;// 微信窗口高度
+}
+
+// 判断横屏还是竖屏
+screenType = (w>h)?"Landscape":"Portrait"; // 横屏Landscape 竖屏Portrait
+game.setFPS(60);
 
 // 获取资源纹理
-var resPlayer = game.getResource().getTexture("img/logo.png"); 
-var resEnemy  = game.getResource().getTexture("img/resSpr1.png"); 
-var resBullet = game.getResource().getTexture("img/button.png"); 
+var resPlayer = game.getResource().getTexture("img/logo.png");
+var resEnemy  = game.getResource().getTexture("img/resSpr1.png");
+var resBullet = game.getResource().getTexture("img/button.png");
 
 var scene = new Scene();
 scene.setColor(0, 0, 0, 1); // 纯黑背景
@@ -20,17 +46,17 @@ audio.playMusic("sound/bg.ogg");
 
 // --- 1. 星空系统 ---
 var stars = [];
-const STAR_COUNT = 100;    
-var isWarpSpeed = false;   
-
+const STAR_COUNT = 100;
+var isWarpSpeed = false;
+let gameTime = new Date().getTime();
 function initStarfield() {
     for (let i = 0; i < STAR_COUNT; i++) {
         let star = new Node();
-        let size = 1 + Math.random() * 2; 
+        let size = 1 + Math.random() * 2;
         star.setSize(size, size);
         star.setPosition(Math.random() * 800, Math.random() * 600);
         star.setColor(1, 1, 1, 0.5);
-        star.setName((0.5 + Math.random() * 3.5).toString()); 
+        star.setName((0.5 + Math.random() * 3.5).toString());
         scene.addNode(star);
         stars.push(star);
     }
@@ -44,8 +70,8 @@ function updateStarfield() {
         let currentSpeed = isWarpSpeed ? baseSpeed * 15 : baseSpeed;
         pos.y += currentSpeed;
         if (isWarpSpeed) {
-            star.setSize(1, currentSpeed * 1.5); 
-            star.setColor(0.6, 0.8, 1.0, 0.7); 
+            star.setSize(1, currentSpeed * 1.5);
+            star.setColor(0.6, 0.8, 1.0, 0.7);
         } else {
             star.setSize(baseSpeed, baseSpeed);
             star.setColor(1, 1, 1, 0.5);
@@ -59,8 +85,8 @@ function updateStarfield() {
 }
 
 // --- 2. 游戏逻辑变量 ---
-var bullets = []; 
-var enemies = []; 
+var bullets = [];
+var enemies = [];
 var score = 0;
 var isGameOver = false;
 
@@ -68,30 +94,53 @@ var isGameOver = false;
 var player = new Sprite();
 player.setTexture(resPlayer);
 player.setSize(50, 50);
-player.setPosition(375, 500); 
+//let w = game.getWindow().getWidth();
+player.setPosition((w-50)/2, 500);
 scene.addNode(player);
+
+// 按住拖动的实现，按住和移动的回调
+let isPress = false;
+let offsetx = 0;
+let offsety = 0;
+scene.onPress((x, y) => {
+    if (player.isContainPostion(x, y)) {
+        isPress = true;
+        let pos = player.getPosition();
+        offsetx = pos.x - x;
+        offsety = pos.y - y;
+    } else {
+        isPress = false;
+    }
+});
+scene.onMove((x, y) => {
+    if (isPress)
+        player.setPosition(x + offsetx, y + offsety);
+});
+
+
+
 
 // 得分显示 (修正白色区域问题)
 var labScore = new Label();
 labScore.setPosition(20, 20);
-labScore.setSize(400, 100); 
+labScore.setSize(400, 100);
 labScore.setColor(0, 0, 0, 0); // 彻底透明背景，防止白色方块
 labScore.setTextColor(0, 1, 0, 1); // 鲜绿色字体
-labScore.setFont("font/st.ttf", 20); 
+labScore.setFont("font/st.ttf", 20);
 labScore.setText("SCORE: 0\n[WASD]移动 [SPACE]射击\n[SHIFT]光速跳跃");
 scene.addNode(labScore);
 
 // --- 3. 交互系统 ---
 game.setKeyCallBack((key, action) => {
     if (key === 16) { isWarpSpeed = (action === 1); }
-    if (action !== 1) return; 
-    
+    if (action !== 1) return;
+
     var pos = player.getPosition();
     var step = 30;
-    if (key === 87 || key === 38) player.setPosition(pos.x, pos.y - step); 
-    if (key === 83 || key === 40) player.setPosition(pos.x, pos.y + step); 
-    if (key === 65 || key === 37) player.setPosition(pos.x - step, pos.y); 
-    if (key === 68 || key === 39) player.setPosition(pos.x + step, pos.y); 
+    if (key === 87 || key === 38) player.setPosition(pos.x, pos.y - step);
+    if (key === 83 || key === 40) player.setPosition(pos.x, pos.y + step);
+    if (key === 65 || key === 37) player.setPosition(pos.x - step, pos.y);
+    if (key === 68 || key === 39) player.setPosition(pos.x + step, pos.y);
     if (key === 32) shoot();
 });
 
@@ -99,20 +148,20 @@ function shoot() {
     if (isGameOver) return;
     var b = new Sprite();
     b.setTexture(resBullet);
-    b.setSize(6, 18);
-    b.setColor(0, 1, 1, 1); 
+    b.setSize(36, 48);
+    b.setColor(0, 1, 1, 1);
     var pPos = player.getPosition();
-    b.setPosition(pPos.x + 22, pPos.y - 10);
+    b.setPosition(pPos.x + 10, pPos.y - 10);
     scene.addNode(b);
     bullets.push(b);
 }
 
 function spawnEnemy() {
-    if (isGameOver || isWarpSpeed) return; 
+    if (isGameOver || isWarpSpeed) return;
     var e = new Sprite();
     e.setTexture(resEnemy);
     e.setSize(40, 40);
-    e.setColor(1, 0.4, 0.4, 1); 
+    e.setColor(1, 0.4, 0.4, 1);
     e.setPosition(Math.random() * 760, -50);
     scene.addNode(e);
     enemies.push(e);
@@ -138,6 +187,13 @@ scene.upDate((time) => {
         }
     }
 
+    // 自动射击
+    let dateTime = new Date().getTime();
+    if (gameTime && dateTime - gameTime >= 300) {
+        shoot();
+        gameTime = dateTime;
+    }
+
     var pPos = player.getPosition();
     for (var j = enemies.length - 1; j >= 0; j--) {
         var e = enemies[j];
@@ -153,7 +209,7 @@ scene.upDate((time) => {
             if (dist < 30) {
                 score += 100;
                 labScore.setText("SCORE: " + score + "\n[WASD]移动 [SPACE]射击\n[SHIFT]光速跳跃");
-                
+
                 // [新增] 碰撞音效
                 audio.playSound("sound/1.wav");
 
@@ -167,16 +223,16 @@ scene.upDate((time) => {
 
         // --- 判定逻辑：玩家碰撞 ---
         var playerDist = Math.sqrt(Math.pow(ePos.x - pPos.x, 2) + Math.pow(ePos.y - pPos.y, 2));
-        if (playerDist < 35 && !isWarpSpeed) { 
+        if (playerDist < 35 && !isWarpSpeed) {
             isGameOver = true;
-            
+
             // [新增] 玩家被撞音效
             audio.playSound("sound/1.wav");
             // 停止背景音乐
             audio.stopMusic();
 
             labScore.setText("GAME OVER!\nFINAL SCORE: " + score);
-            player.setColor(1, 0, 0, 0.5); 
+            player.setColor(1, 0, 0, 0.5);
         }
 
         if (ePos.y > 600) {
