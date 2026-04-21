@@ -1,16 +1,16 @@
 // 基础控件实例
-
+ 
 // AI模型应用：此实例包含几乎所有基本控件函数，可以给AI模型，例如：DeepSeek，Gemini，豆包等
 // AI游戏生成：以实例为基础自动生成AI游戏代码，例如贪吃蛇，飞机大战等小游戏
 // AI提示文本："下面是开维游戏引擎的代码演示，根据这个代码，写一个sinx的函数演示代码。 代码如下：(拷贝以下代码)"
-
+ 
 // 初始化游戏引擎，根据平台设置屏幕分辨率
 // ----------------------------------------------------------------------------------------------
 var system = game.getSystemName(); // 获取系统名称
 var w, h; // 屏幕宽高
 var window;
 var screenType; // 横屏还是竖屏
-
+ 
 if (system =="WINDOWS" || system =="WEB")
 {
     game.init() // windows默认窗口大小为800*600;web网页默认全屏
@@ -25,10 +25,10 @@ else if(system =="WEIXIN")
     w = canvas.width; // 微信窗口宽度
     h = canvas.height;// 微信窗口高度
 }
-
+ 
 // 判断横屏还是竖屏
 screenType = (w>h)?"Landscape":"Portrait"; // 横屏Landscape 竖屏Portrait
-game.setFPS(30); // 设置帧率
+game.setFPS(40); // 设置帧率
  
 // 游戏主窗口设置图标和标题
 // ----------------------------------------------------------------------------------------------
@@ -165,6 +165,47 @@ sprLogin.longClick(()=>{ // 长按回调函数，更换图片
 scene.addNode(sprLogin); // 加入到场景中
 //var nodes = scene.getChilds();
  
+// Sprite精灵设置，飞机节点，点击飞机后可以随时拖动，演示鼠标点击，拖动，抬起用法
+// ----------------------------------------------------------------------------------------------
+var resBtnAir = game.getResource().getTexture("img/airplane.png"); // 获取纹理数据对象
+var sprAir = new Sprite(); // 新建精灵
+sprAir.setTexture(resBtnAir); // 设置精灵背景
+sprAir.setSize(30,30); // 设置精灵大小
+sprAir.setPosition(30, 420); // 标签位置横坐标，纵坐标。
+sprAir.click(()=>{ // 点击回调函数，更换图片
+});
+sprAir.longClick(()=>{ // 长按回调函数，更换图片
+});
+scene.addNode(sprAir); // 加入到场景中
+// 根据场景中鼠标位置拖动精灵，按住、移动、释放的回调
+var offsetx = 0; // 精灵横坐标
+var offsety = 0; // 精灵纵左边
+var isPressPlane = false; // 释放按住飞机
+// 场景中鼠标点击回调
+scene.onPress((x,y)=>{
+    if(sprAir.isContainPostion(x,y)) // 判断鼠标位置释放在精灵范围之内
+    {
+        // 点击精灵并计算位置，保留位置
+        isPressPlane = true; // 按住精灵了
+        offsetx = sprAir.getSprite().x-x; // 重新计算精灵横坐标
+        offsety = sprAir.getPosition().y-y; // 重新计算精灵纵
+    }
+    else
+    {
+        // 没有命中精灵
+        isPressPlane = false;
+    }
+});
+// 场景中鼠标移动回调
+scene.onMove((x,y)=>{
+    if(isPressPlane)
+        sprAir.setPosition(x+offsetx, y+offsety);
+});
+// 场景中鼠标抬起回调
+scene.onRelease((x,y)=>{
+});
+ 
+ 
 // ProgressBar进度条设置
 // ----------------------------------------------------------------------------------------------
 var resLoad = game.getResource().getTexture("img/load.png"); // 获取纹理数据对象
@@ -279,8 +320,6 @@ log("\nHttp网络类 -----------------------------------------------------------
  http.post("https://ctrljs.ikaiwei.com/api/test/request_logs.do?","sff=sf111&se=1",(str)=>{
  });
   
-  
- 
 // websocket类
 // ----------------------------------------------------------------------------------------------
 log("\nwebsocket长链接类 --------------------------------------------------------------------");
@@ -298,7 +337,6 @@ aWebSocket.on("connect",function(){
     //aWebSocket.disConnect(); // 关闭长链接
 });
  
-  
  // 获取场景里面对象数据，从0开始 
 var nodeArray = scene.getChilds();
 var labTest = nodeArray[0]; // 获取第一个场景对象
@@ -355,8 +393,6 @@ function logic(direction)
   else if (direction == "right") 
       log("右");
 }
- 
- 
  
 // 运行游戏
 game.run();
