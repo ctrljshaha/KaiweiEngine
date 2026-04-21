@@ -4,8 +4,11 @@ class Util{
     // 函数功能：创建背景场景，并返回场景和背景节点
     static bj=(options={})=>{
 
-        let w = game.getWindow().getWidth();
-        let h = game.getWindow().getHeight();
+        //let w = game.getWindow().getWidth();
+        //let h = game.getWindow().getHeight();
+        let w = GlobalVariable.w;
+        let h = GlobalVariable.h;
+
         let config = {
             x: 0,
             y: 0,
@@ -123,5 +126,57 @@ class Util{
     }
 
 
+    static w(percent){
+        let w = game.getWindow().getWidth();
+        let p = percent/100;
+        return w * p;
+    }
+
+    static h(percent){
+        let h = game.getWindow().getHeight();
+        let p = percent/100;
+        return h * p;
+    }
+
+    static center(node){
+        if(!node){
+            return;
+        }
+
+        let {x,y,width,height} = this.getPosition(node);
+
+        let w = game.getWindow().getWidth();
+        let centerX = (w-width)/2
+
+        node.setPosition(centerX,y);
+    }
+
+
+    static centerWidth(node){
+        if(!node){
+            return;
+        }
+
+        let {x,y,width,height} = this.getPosition(node);
+
+        let w = game.getWindow().getWidth();
+        let centerX = (w-width)/2
+
+        node.setPosition(centerX,y);
+    }
+
+
+    static centerHeight(node) {
+        if(!node){
+            return;
+        }
+
+        let {x,y,width,height} = this.getPosition(node);
+
+        let h = game.getWindow().getHeight();
+        let centerY = (h-height)/2
+
+        node.setPosition(x,centerY);
+    }
 
 }

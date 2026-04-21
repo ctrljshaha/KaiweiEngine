@@ -18,6 +18,7 @@ class Gobang {
     // 棋盘在屏幕上的偏移坐标
     static posX = 0;
     static posY = 0;
+    static chessBoardSize = 0;
     // 当前活动场景引用
     static scene;
     static audio = new Audio();
@@ -207,13 +208,38 @@ class Gobang {
      */
     static createChessBg() {
         let w = game.getWindow().getWidth();
-        return Util.newSprite({
+        
+        let width = Util.w(80);
+        let height = Util.h(80);
+
+        // 棋盘大小，微信比例大一点
+        var system1 = game.getSystemName(); // 获取系统名称
+        if (system1 =="WINDOWS" || system1 =="WEB")
+        {
+            width = Util.w(80);
+            height = Util.h(80);
+        }
+        else if(system1 =="WEIXIN")
+        {
+            width = Util.w(98);
+            height = Util.h(98);
+        }
+
+        let size = width < height?width:height;
+        this.chessBoardSize = size;
+
+        let sprite = Util.newSprite({
             x: Math.abs(300 - w / 2) + 5,
             y: 5,
-            width: 600,
-            height: 600,
+            width: size,
+            height: size,
             texture: "gobang.png"
         });
+
+        Util.centerWidth(sprite);
+        Util.centerHeight(sprite);
+
+        return sprite;
     }
 
     /**
@@ -226,13 +252,23 @@ class Gobang {
         const cache = game.getResource();
         let texture = cache.getTexture(isWhite ? "chess_white.png" : "chess_black.png");
 
+
+        let part15 = this.chessBoardSize/15;
+
+        let chessPieceSize = part15*0.8;
+
         let chessPiece = new Sprite();
         chessPiece.setTexture(texture);
-        chessPiece.setSize(25, 25);
+
+        chessPiece.setSize(chessPieceSize, chessPieceSize);
+
+
+
+        let a = chessPieceSize*0.15;
 
         // 核心渲染计算：坐标偏移量 + (行列间隔 * 单位长度)
-        let x = this.posX + 3 + 40.5 * (col - 1);
-        let y = this.posY + 3 + 40.5 * (row - 1);
+        let x = this.posX + a + part15 * (col - 1);
+        let y = this.posY + a + part15 * (row - 1);
 
         chessPiece.setPosition(x, y);
         this.scene.addNode(chessPiece);
@@ -247,9 +283,12 @@ class Gobang {
     static logic(x, y) {
         if (GlobalVariable.gameOver) return;
 
+        let part15 = this.chessBoardSize/15;
+        let number = part15/4;
+
         // 坐标反算：将屏幕坐标转为网格坐标
-        let col = Math.floor((x - this.posX - 3) / 40.5) + 1;
-        let row = Math.floor((y - this.posY - 3) / 40.5) + 1;
+        let col = Math.floor((x - this.posX - number) / part15) + 1;
+        let row = Math.floor((y - this.posY - number) / part15) + 1;
 
         // 边界防御检查
         if (row < 1 || row > 15 || col < 1 || col > 15) return;
@@ -291,17 +330,19 @@ class Gobang {
         let h = game.getWindow().getHeight();
         let msg = this.win ? "游戏结束，胜利！" : "游戏结束，失败！";
 
-        Util.newText({
+        let text = Util.newText({
             text: msg,
             x: w / 3 + 70,
-            y: 10,
+            y: this.posY - 40,
             width: 150,
         });
 
+        Util.centerWidth(text);
+
         // 显示重试按钮
-        Util.newSprite({
+        let button = Util.newSprite({
             x: w / 2 - 73,
-            y: h / 2 - 26,
+            y: Util.h(91),
             width: 147,
             height: 53,
             texture: 'restart.png',
@@ -309,5 +350,7 @@ class Gobang {
                 new Gobang(); // 重新实例化
             }
         });
+
+        Util.centerWidth(button);
     }
 }

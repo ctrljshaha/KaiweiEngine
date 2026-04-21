@@ -6,5 +6,8 @@ class GlobalVariable{
 
     // 游戏结束
     static gameOver = false;
+    
+    static w; // 屏幕宽度
+    static h; // 屏幕高度
 
 }
