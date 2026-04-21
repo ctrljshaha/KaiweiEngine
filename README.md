@@ -78,7 +78,63 @@
 
 官网：www.ikaiwei.com
 
-## 四、实例演示
+## 四、部分游戏演示
+
+001.Hello world
+
+网页版：https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html
+
+windows版（exe）、网页版（html）、微信小游戏竖屏、微信小游戏横屏：
+
+<img src="https://www.ikaiwei.com/gamejs/vid/001/0011.jpg" width="640" height="320" alt="演示动画">
+
+
+002.游戏登录界面
+
+网页版：https://www.ikaiwei.com/gamejs/example/002_Login_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/002/002.gif" width="480" height="360" alt="演示动画">
+
+
+003.贪吃蛇
+
+网页版：https://www.ikaiwei.com/gamejs/example/003_Snake_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/003/003.gif" width="480" height="360" alt="演示动画">
+
+
+005.2048小游戏
+
+网页版：https://www.ikaiwei.com/gamejs/example/005_2048_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/005/005.gif" width="480" height="360" alt="演示动画">
+
+010.五子棋
+
+网页版：https://www.ikaiwei.com/gamejs/example/010_Gobang_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/010/010.gif" width="480" height="360" alt="演示动画">
+
+106.AI生成：俄罗斯方块
+
+网页版：https://www.ikaiwei.com/gamejs/example/106_ai_tetris_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/106/106.gif" width="480" height="360" alt="演示动画">
+
+107.AI生成：飞翔的小鸟 FlappyBird
+
+网页版：https://www.ikaiwei.com/gamejs/example/107_ai_flappybird_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/107/107.gif" width="280" height="500" alt="演示动画">
+
+108.AI生成：愤怒的小鸟 angrybirds
+
+网页版：https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/108/108.gif" width="480" height="360" alt="演示动画">
+
+
+## 五、全部实例演示
 
 普通代码 游戏演示视频：
 
@@ -87,91 +143,3 @@ https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example
 AI代码 游戏演示视频：
 
 https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai
-
-<!--
-001.Hello world
-
-https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html
-
-<img src="https://www.ikaiwei.com/gamejs/vid/001/001.jpg" width="400">
-
-002.游戏登录界面
-
-https://www.ikaiwei.com/gamejs/example/002_Login_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/002/002.mp4" type="video/mp4"></video>
-
-003.贪吃蛇
-
-https://www.ikaiwei.com/gamejs/example/003_Snake_html/index.html
-
-<video width="400" height="350" controls><source src="https://www.ikaiwei.com/gamejs/vid/003/003.mp4" type="video/mp4"></video>
-
-004.赛车
-
-https://www.ikaiwei.com/gamejs/example/004_Car_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/004/004.mp4" type="video/mp4"></video>
-
-005.2048小游戏
-
-https://www.ikaiwei.com/gamejs/example/005_2048_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/005/005.mp4" type="video/mp4"></video>
-
-006.扫雷
-
-https://www.ikaiwei.com/gamejs/example/006_SaoLei_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/006/006.mp4" type="video/mp4"></video>
-
-007.飞机大战
-
-https://www.ikaiwei.com/gamejs/example/007_airplane_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/007/007.mp4" type="video/mp4"></video>
-
-008.生存者
-
-https://www.ikaiwei.com/gamejs/example/008_survivor_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/008/008.mp4" type="video/mp4"></video>
-
-
-100.AI生成：sinx正弦函数数
-
-https://www.ikaiwei.com/gamejs/example/100_ai_sinx_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/100/100_deepseek.mp4" type="video/mp4"></video>
-
-101.AI生成：贪吃蛇
-
-https://www.ikaiwei.com/gamejs/example/101_ai_snake_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/101/101.mp4" type="video/mp4"></video>
-
-102.AI生成：飞机大战
-
-https://www.ikaiwei.com/gamejs/example/102_ai_airplane_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/102/102_gemini.mp4" type="video/mp4"></video>
-
-103.AI生成：重力模拟器自由落体反弹
-
-https://www.ikaiwei.com/gamejs/example/103_ai_gravity_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/103/103.mp4" type="video/mp4"></video>
-
-104.AI生成：烟花效果
-
-https://www.ikaiwei.com/gamejs/example/104_ai_fireworks_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/104/104.mp4" type="video/mp4"></video>
-
-105.AI生成：抖音跑车特效
-
-https://www.ikaiwei.com/gamejs/example/105_ai_douyincar_html/index.html
-
-<video width="400" height="320" controls><source src="https://www.ikaiwei.com/gamejs/vid/105/105_gemini.mp4" type="video/mp4"></video>
-
--->
