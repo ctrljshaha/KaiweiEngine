@@ -64,11 +64,15 @@
 
 ## 二、软件下载
 
-游戏开发环境IDE 下载： [https://www.ikaiwei.com/download/gamejs/kaiwei_gameide_setup.exe](https://www.ikaiwei.com/download/gamejs/kaiwei_gameide_setup.exe)<br/>
+游戏引擎： https://www.ikaiwei.com/download/gamejs/kaiwei_gameide_setup.exe
 
-游戏开发环境IDE 用法：https://www.ikaiwei.com/download/gamejs/help.pdf
+游戏源码：https://www.ikaiwei.com/download/gamejs/example.zip
 
-游戏源码下载：https://www.ikaiwei.com/download/gamejs/example.zip
+开发文档：https://www.ikaiwei.com/gamejs/api/index.html
+
+帮助文档：https://www.ikaiwei.com/download/gamejs/help.pdf
+
+游戏市场：https://gamejs.ikaiwei.com/#/Market
 
 支持Windows10及以上系统。
 
