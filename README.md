@@ -121,6 +121,12 @@ windows版（exe）、网页版（html）、微信小游戏竖屏、微信小游
 
 <img src="https://www.ikaiwei.com/gamejs/vid/005/005.gif" width="480" height="360" alt="演示动画">
 
+006.扫雷
+
+网页版本：https://www.ikaiwei.com/gamejs/example/006_SaoLei_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/006/006.gif" width="480" height="480" alt="演示动画">
+
 007.飞机大战
 
 网页版本：https://www.ikaiwei.com/gamejs/example/007_airplane_html/index.html
@@ -156,6 +162,18 @@ AI步骤：https://blog.csdn.net/weixin_41399197/article/details/158702071
 网页版本：https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html
 
 <img src="https://www.ikaiwei.com/gamejs/vid/108/108.gif" width="480" height="360" alt="演示动画">
+
+109.AI生成：中国象棋
+
+网页版本：https://www.ikaiwei.com/gamejs/example/109_ai_xiangqi_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/109/109.gif" width="480" height="500" alt="演示动画">
+
+110.AI生成：水果忍者
+
+网页版本：https://www.ikaiwei.com/gamejs/example/110_ai_fruit_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/110/110.gif" width="480" height="360" alt="演示动画">
 
 
 ## 五、全部实例演示
