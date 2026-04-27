@@ -1,4 +1,4 @@
-// Hello world 程序实例 
+// Hello world 程序实例
   
 // 初始化游戏引擎， 根据平台设置屏幕分辨率
 var system = game.getSystemName(); // 获取系统名称
