@@ -5,9 +5,9 @@
         "n": [
             "main.js",
             "Card.js",
-            "LevelScene.js",
             "util.js",
-            "MineSweep.js"
+            "MineSweep.js",
+            "LevelScene.js"
         ]
     },
     "proName": "106_saolei",

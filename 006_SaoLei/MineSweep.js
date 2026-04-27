@@ -16,7 +16,7 @@ class MineSweep {
     /**
      * 剩余地雷数
      */
-     static remain = 10;
+    static remain = 10;
 
     /**
      * 格子
@@ -92,7 +92,7 @@ class MineSweep {
             height: 40,
             texture: 'btback.png',
             clickCb: ()=>{
-                new LevelScene();
+                new LevelScene(isWeixin);
             }
         })
 
@@ -115,10 +115,25 @@ class MineSweep {
         // 剩余地雷数
         this.remain = this.leiNum;
 
+        // 计算方块大小
+        let size = Util.w(90 / (col+2) );
+        let size2 = Util.h(90 / (row+2) );
+        size = size > size2 ? size2 : size;
+
+        let cardsSize = {
+            width: (size + 5) * col - 5,
+            height: (size + 5) * row - 5
+        }
+
+        // 计算卡片位置偏移量
+        let marginX = Util.centerX(cardsSize.width);
+        let marginY = Util.centerY(cardsSize.height);
+
         for (let i = 0; i < row; i++) {
             let arr = [];
             for (let j = 0; j < col; j++) {
-                arr.push(new Card(this.scene,i,j,40));
+                let card = new Card(this.scene, i, j, size,marginX,marginY);
+                arr.push(card);
             }
             blocks.push(arr);
         }
@@ -181,7 +196,7 @@ class MineSweep {
      * 如果方块为空（category为0），则递归地翻开与空相邻的方块
      * fanNumber  翻开相邻的方块的数量
      */
-     static flipAround(i, j,fanNumber) {
+    static flipAround(i, j,fanNumber) {
         let blocks = this.blocks;
         let row = this.row;
         let col = this.col;
@@ -277,7 +292,7 @@ class MineSweep {
             }
         }
         return fanNumber;
-     }
+    }
 
 
 
@@ -398,7 +413,6 @@ class MineSweep {
         // 对局没结束 坐标没越界 方块没翻开
         if ((!this.over || !win) && i >= 0 && i < row && j >= 0 && j < col && !block.flip) {
             if (type == 0 && !block.flag){
-                log("click 单击")
                 // 第一次单击时开始记时
                 if (!this.begin) {
                     this.begin = new Date();
@@ -418,8 +432,7 @@ class MineSweep {
                 this.firstClickNormal = true;
                 if(block.category !== 9){
                     log("dj.mp3")
-                    let audio = new Audio();
-                    audio.playSound("dj.mp3"); // 播放音效
+                    Util.playSound("dj.mp3"); // 播放音效
                 }
             }
             else if (type == 1) {
@@ -435,12 +448,11 @@ class MineSweep {
         } else if ((!this.over || !win) && i >= 0 && i < row && j >= 0 && j < col && type == 2) {
             // 方块已经被翻开 且不是地雷
             if (block.flip && block.category < 9) {
-                log("click 双击")
                 // 双击标旗 或 空白  不做任何处理
                 if( block.category==0){
 
                 }else{
-                    audio.playSound("dj.mp3"); // 播放音效
+                    Util.playSound("dj.mp3"); // 播放音效
                     // 双击成功
                     return this.doubleClickFlip(i, j);
                 }
@@ -454,11 +466,11 @@ class MineSweep {
      */
     static clickOver(block){
         if(block.category == 9) {
-                this.over = true;
-                this.begin = false;
-                this.flipAll();
-                this.gameEnd(false);
-                audio.playSound("baoza.mp3"); // 播放音效
+            this.over = true;
+            this.begin = false;
+            this.flipAll();
+            this.gameEnd(false);
+            Util.playSound("baoza.mp3"); // 播放音效
         }
     }
 
@@ -494,9 +506,11 @@ class MineSweep {
         log("游戏结束:"+win)
         if(win){
             let number = time.getTime() - this.startTime.getTime();
-            Util.newText(150,10,"游戏胜利,耗时:"+parseInt(number/1000)+"秒",220,30)
+            let text = Util.newText(150,30,"游戏胜利,耗时:"+parseInt(number/1000)+"秒",220,30);
+            Util.centerWidth(text)
         }else {
-            Util.newText(100,10,"游戏失败",80,30)
+            let newText = Util.newText(100,30,"游戏失败",80,30);
+            Util.centerWidth(newText)
         }
     }
 

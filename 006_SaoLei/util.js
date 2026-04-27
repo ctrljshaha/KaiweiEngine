@@ -1,5 +1,8 @@
 class Util{
+    static audio = new Audio();
+    static bgMusic = false;
     static scene;
+
     static bj=()=>{
         let scene = new Scene();
         this.scene = scene;
@@ -67,9 +70,114 @@ class Util{
         return lab;
     }
 
+    // 函数功能：获取节点位置和大小
+    static getPosition(node){
+        if (!node){
+            return;
+        }
+        let x = node.getPosition().x;
+        let y = node.getPosition().y;
+
+        let width = node.getSize().x;
+        let height = node.getSize().y;
+
+        return {x:x, y:y, width:width, height:height};
+    }
+
+
+    static w(percent){
+        let w = game.getWindow().getWidth();
+        let p = percent/100;
+        return w * p;
+    }
+
+    static h(percent){
+        let h = game.getWindow().getHeight();
+        let p = percent/100;
+        return h * p;
+    }
 
 
 
+    static centerWidth(node){
+        if(!node){
+            return;
+        }
+
+        let {x,y,width,height} = this.getPosition(node);
+
+        let w = game.getWindow().getWidth();
+        let centerX = (w-width)/2
+
+        node.setPosition(centerX,y);
+    }
+
+    static centerX(width){
+        if(!width){
+            return;
+        }
 
 
+        let w = game.getWindow().getWidth();
+        let x = (w-width)/2
+
+        return x;
+    }
+
+    static centerHeight(node) {
+        if(!node){
+            return;
+        }
+
+        let {x,y,width,height} = this.getPosition(node);
+
+        let h = game.getWindow().getHeight();
+        let centerY = (h-height)/2
+
+        node.setPosition(x,centerY);
+    }
+
+    static centerY(height){
+        if(!height){
+            return;
+        }
+        let h = game.getWindow().getHeight();
+        let y = (h-height)/2
+
+        return y;
+    }
+
+
+    // 函数功能：播放音效
+    static playSound(soundPath){
+        if (soundPath){
+            this.audio.playSound(soundPath); // 播放音效
+
+            // audio.setMusicVolume(0.8); // 设置背景音乐音量大小值
+            //audio.setSoundVolume(0.5); // 设置音效音量大小值
+        }
+    }
+
+    // 函数功能：播放背景音乐,循环播放
+    static playMusic(soundPath){
+        let bgMusic = this.bgMusic;
+        if (soundPath){
+            if(bgMusic){
+                this.stopMusic();
+            }
+
+            this.bgMusic = true;
+            this.audio.playMusic(soundPath); // 播放音效
+            // audio.setMusicVolume(0.8); // 设置背景音乐音量大小值
+            //audio.setSoundVolume(0.5); // 设置音效音量大小值
+        }
+    }
+
+    // 函数功能：停止背景音乐
+    static stopMusic(){
+        if (this.audio){
+            this.bgMusic = false;
+            this.audio.stopMusic();
+        }
+    }
 }

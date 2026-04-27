@@ -1,14 +1,17 @@
 class LevelScene{
 
-    constructor(){
+    constructor(isWeiXin){
         let scene = Util.bj();
         let cache_ = game.getResource();
         let w = game.getWindow().getWidth();
         let h = game.getWindow().getHeight();
         let left = w*0.3;
         let top = 60;
-        let width=332;
-        let height=106;
+
+        let width=Util.w(55);
+        let height=Util.h(15);
+
+
         let chujichangBg = cache_.getTexture("chujichang.png");
         let chujichang = new Sprite();
         chujichang.setTexture(chujichangBg);
@@ -17,6 +20,7 @@ class LevelScene{
         chujichang.setColor(1,1,1,1);
         chujichang.setName("chujichang");
         scene.addNode(chujichang);
+        Util.centerWidth(chujichang);
         chujichang.click((type,x,y)=>{
             let play = new MineSweep(9,9,10);
         });
@@ -29,20 +33,25 @@ class LevelScene{
         gaojichang.setPosition(left,top*2+height);
         gaojichang.setColor(1,1,1,1);
         scene.addNode(gaojichang);
+        Util.centerWidth(gaojichang);
         gaojichang.click((type,x,y)=>{
             let play = new MineSweep(16,9,30);
         });
 
-        let dashichangPg = cache_.getTexture("dashichang.png");
-        const dashichang = new Sprite();
-        dashichang.setTexture(dashichangPg);
-        dashichang.setSize(width,height);
-        dashichang.setPosition(left,top*3+height*2);
-        dashichang.setColor(1,1,1, 1);
-        scene.addNode(dashichang);
-        dashichang.click((type,x,y)=>{
-            let play = new MineSweep(16,16,50);
-        });
+        if(!isWeiXin){
+            let dashichangPg = cache_.getTexture("dashichang.png");
+            const dashichang = new Sprite();
+            dashichang.setTexture(dashichangPg);
+            dashichang.setSize(width,height);
+            dashichang.setPosition(left,top*3+height*2);
+            dashichang.setColor(1,1,1, 1);
+            scene.addNode(dashichang);
+            Util.centerWidth(dashichang);
+            dashichang.click((type,x,y)=>{
+                let play = new MineSweep(16,16,50);
+            });
+        }
+
     }
 
 
