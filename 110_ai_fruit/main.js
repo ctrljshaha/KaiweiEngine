@@ -1,4 +1,4 @@
-// 水果忍者小游戏，gemini生成，手工略微润色
+// 水果忍者小游戏，gemini生成，手工略微润色 
 // 微信导出小游戏时，选择横屏
 // AI提问：“参考开维游戏引擎实例，把这个网址https://github.com/ChineseDron/fruit-ninja/tree/master的游戏转为开维游戏引擎js代码。参考代码如下：（拷贝002实例代码）”
 
