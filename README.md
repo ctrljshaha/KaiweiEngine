@@ -141,6 +141,12 @@ windows版（exe）、网页版（html）、微信小游戏竖屏、微信小游
 
 <img src="https://www.ikaiwei.com/gamejs/vid/010/010.gif" width="480" height="360" alt="演示动画">
 
+011.斗地主
+
+网页版本：https://www.ikaiwei.com/gamejs/example/011_ddz_html/index.html
+
+<img src="https://www.ikaiwei.com/gamejs/vid/011/011.gif" width="480" height="360" alt="演示动画">
+
 106.AI生成：俄罗斯方块
 
 网页版本：https://www.ikaiwei.com/gamejs/example/106_ai_tetris_html/index.html
