@@ -1,0 +1,24 @@
+{
+    "file": {
+        "c": {
+        },
+        "n": [
+            "Card.js",
+            "DdzPage.js",
+            "GlobalVariable.js",
+            "HttpMgr.js",
+            "MainPage.js",
+            "MyCenter.js",
+            "Rank.js",
+            "Shop.js",
+            "main.js",
+            "util.js",
+            "Login.js",
+            "Rule.js",
+            "SocketIoMgr.js"
+        ]
+    },
+    "proName": "011_ddz",
+    "scene": {
+    }
+}
