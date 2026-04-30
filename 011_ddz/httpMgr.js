@@ -6,7 +6,8 @@
 class HttpManager {
     constructor() {
         // 核心配置
-        this.host = "http://182.92.72.7:8880/ddz/";
+        //this.host = "http://182.92.72.7:8880/ddz/";
+        this.host = "https://imtest.linchixuan.com/ddz/";
         // this.host = "http://127.0.0.1:8080/";
 
         this.httpClient = new Http();
