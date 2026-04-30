@@ -64,15 +64,15 @@
 
 ## 二、软件下载
 
-游戏引擎： https://www.ikaiwei.com/download/gamejs/kaiwei_gameide_setup.exe
+游戏引擎： [https://www.ikaiwei.com/download/gamejs/kaiwei_gameide_setup.exe](https://www.ikaiwei.com/download/gamejs/kaiwei_gameide_setup.exe)
 
-游戏源码：https://www.ikaiwei.com/download/gamejs/example.zip
+游戏源码：[https://www.ikaiwei.com/download/gamejs/example.zip](https://www.ikaiwei.com/download/gamejs/example.zip)
 
-开发文档：https://www.ikaiwei.com/gamejs/api/index.html
+开发文档：[https://www.ikaiwei.com/gamejs/api/index.html](https://www.ikaiwei.com/gamejs/api/index.html)
 
-帮助文档：https://www.ikaiwei.com/download/gamejs/help.pdf
+帮助文档：[https://www.ikaiwei.com/download/gamejs/help.pdf](https://www.ikaiwei.com/download/gamejs/help.pdf)
 
-游戏市场：https://gamejs.ikaiwei.com/#/Market
+游戏市场：[https://gamejs.ikaiwei.com/#/Market](https://gamejs.ikaiwei.com/#/Market)
 
 支持Windows10及以上系统。
 
@@ -84,11 +84,13 @@
 
 ## 四、部分游戏演示
 
+**所有实例均可导出：windows版（exe）、网页版（html）、微信小游戏**
+
 001.Hello world
 
-网页版本：https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html](https://www.ikaiwei.com/gamejs/example/001_HelloWorld_html/index.html)
 
-使用说明：https://blog.csdn.net/weixin_41399197/article/details/158352011
+使用说明：[https://blog.csdn.net/weixin_41399197/article/details/158352011](https://blog.csdn.net/weixin_41399197/article/details/158352011)
 
 windows版（exe）、网页版（html）、微信小游戏竖屏、微信小游戏横屏：
 
@@ -97,97 +99,100 @@ windows版（exe）、网页版（html）、微信小游戏竖屏、微信小游
 
 002.游戏登录界面
 
-网页版本：https://www.ikaiwei.com/gamejs/example/002_Login_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/002_Login_html/index.html](https://www.ikaiwei.com/gamejs/example/002_Login_html/index.html)
 
-使用说明：https://blog.csdn.net/weixin_41399197/article/details/158384807
+使用说明：[https://blog.csdn.net/weixin_41399197/article/details/158384807](https://blog.csdn.net/weixin_41399197/article/details/158384807)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/002/002.gif" width="480" height="360" alt="演示动画">
 
 
 003.贪吃蛇
 
-网页版本：https://www.ikaiwei.com/gamejs/example/003_Snake_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/003_Snake_html/index.html](https://www.ikaiwei.com/gamejs/example/003_Snake_html/index.html)
 
-使用说明：https://blog.csdn.net/weixin_41399197/article/details/158423275
+使用说明：[https://blog.csdn.net/weixin_41399197/article/details/158423275](https://blog.csdn.net/weixin_41399197/article/details/158423275)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/003/003.gif" width="480" height="360" alt="演示动画">
 
 
 005.2048小游戏
 
-网页版本：https://www.ikaiwei.com/gamejs/example/005_2048_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/005_2048_html/index.html](https://www.ikaiwei.com/gamejs/example/005_2048_html/index.html)
 
-使用说明：https://blog.csdn.net/weixin_41399197/article/details/158385491
+使用说明：[https://blog.csdn.net/weixin_41399197/article/details/158385491](https://blog.csdn.net/weixin_41399197/article/details/158385491)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/005/005.gif" width="480" height="360" alt="演示动画">
 
 006.扫雷
 
-网页版本：https://www.ikaiwei.com/gamejs/example/006_SaoLei_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/006_SaoLei_html/index.html](https://www.ikaiwei.com/gamejs/example/006_SaoLei_html/index.html)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/006/006.gif" width="480" height="480" alt="演示动画">
 
 007.飞机大战
 
-网页版本：https://www.ikaiwei.com/gamejs/example/007_airplane_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/007_airplane_html/index.html](https://www.ikaiwei.com/gamejs/example/007_airplane_html/index.html)
 
-使用说明：https://blog.csdn.net/weixin_41399197/article/details/158508724
+使用说明：[https://blog.csdn.net/weixin_41399197/article/details/158508724](https://blog.csdn.net/weixin_41399197/article/details/158508724)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/007/007.gif" width="480" height="360" alt="演示动画">
 
 010.五子棋
 
-网页版本：https://www.ikaiwei.com/gamejs/example/010_Gobang_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/010_Gobang_html/index.html](https://www.ikaiwei.com/gamejs/example/010_Gobang_html/index.html)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/010/010.gif" width="480" height="360" alt="演示动画">
 
 011.斗地主
 
-网页版本：https://www.ikaiwei.com/gamejs/example/011_ddz_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/011_ddz_html/index.html](https://www.ikaiwei.com/gamejs/example/011_ddz_html/index.html)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/011/011.gif" width="480" height="360" alt="演示动画">
 
 106.AI生成：俄罗斯方块
 
-网页版本：https://www.ikaiwei.com/gamejs/example/106_ai_tetris_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/106_ai_tetris_html/index.html](https://www.ikaiwei.com/gamejs/example/106_ai_tetris_html/index.html)
 
-AI步骤：https://blog.csdn.net/weixin_41399197/article/details/158656433
+AI步骤：[https://blog.csdn.net/weixin_41399197/article/details/158656433](https://blog.csdn.net/weixin_41399197/article/details/158656433)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/106/106.gif" width="480" height="360" alt="演示动画">
 
 107.AI生成：飞翔的小鸟 FlappyBird
 
-网页版本：https://www.ikaiwei.com/gamejs/example/107_ai_flappybird_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/107_ai_flappybird_html/index.html](https://www.ikaiwei.com/gamejs/example/107_ai_flappybird_html/index.html)
 
-AI步骤：https://blog.csdn.net/weixin_41399197/article/details/158702071
+AI步骤：[https://blog.csdn.net/weixin_41399197/article/details/158702071](https://blog.csdn.net/weixin_41399197/article/details/158702071)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/107/107.gif" width="280" height="500" alt="演示动画">
 
 108.AI生成：愤怒的小鸟 angrybirds
 
-网页版本：https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html](https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/108/108.gif" width="480" height="360" alt="演示动画">
 
 109.AI生成：中国象棋
 
-网页版本：https://www.ikaiwei.com/gamejs/example/109_ai_xiangqi_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/109_ai_xiangqi_html/index.html](https://www.ikaiwei.com/gamejs/example/109_ai_xiangqi_html/index.html)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/109/109.gif" width="480" height="550" alt="演示动画">
 
 110.AI生成：水果忍者
 
-网页版本：https://www.ikaiwei.com/gamejs/example/110_ai_fruit_html/index.html
+网页版本：[https://www.ikaiwei.com/gamejs/example/110_ai_fruit_html/index.html](https://www.ikaiwei.com/gamejs/example/110_ai_fruit_html/index.html)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/110/110.gif" width="480" height="360" alt="演示动画">
-
 
 ## 五、全部实例演示
 
 普通代码 游戏演示视频：
 
-https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example
+[https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example](https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example)
 
 AI代码 游戏演示视频：
 
-https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai
+[https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai](https://www.ikaiwei.com/gamejs/api/index.html#/zh-cn/docs/example/example_ai)
+
+
+
+
