@@ -147,6 +147,8 @@ windows版（exe）、网页版（html）、微信小游戏竖屏、微信小游
 
 网页版本：[https://www.ikaiwei.com/gamejs/example/011_ddz_html/index.html](https://www.ikaiwei.com/gamejs/example/011_ddz_html/index.html)
 
+使用说明：[https://blog.csdn.net/weixin_41399197/article/details/160693124](https://blog.csdn.net/weixin_41399197/article/details/160693124)
+
 <img src="https://www.ikaiwei.com/gamejs/vid/011/011.gif" width="480" height="360" alt="演示动画">
 
 106.AI生成：俄罗斯方块
@@ -169,17 +171,23 @@ AI步骤：[https://blog.csdn.net/weixin_41399197/article/details/158702071](htt
 
 网页版本：[https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html](https://www.ikaiwei.com/gamejs/example/108_ai_angrybirds_html/index.html)
 
+AI步骤：[https://blog.csdn.net/weixin_41399197/article/details/160691791](https://blog.csdn.net/weixin_41399197/article/details/160691791)
+
 <img src="https://www.ikaiwei.com/gamejs/vid/108/108.gif" width="480" height="360" alt="演示动画">
 
 109.AI生成：中国象棋
 
 网页版本：[https://www.ikaiwei.com/gamejs/example/109_ai_xiangqi_html/index.html](https://www.ikaiwei.com/gamejs/example/109_ai_xiangqi_html/index.html)
 
+AI步骤：[https://blog.csdn.net/weixin_41399197/article/details/160692436](https://blog.csdn.net/weixin_41399197/article/details/160692436)
+
 <img src="https://www.ikaiwei.com/gamejs/vid/109/109.gif" width="480" height="550" alt="演示动画">
 
 110.AI生成：水果忍者
 
 网页版本：[https://www.ikaiwei.com/gamejs/example/110_ai_fruit_html/index.html](https://www.ikaiwei.com/gamejs/example/110_ai_fruit_html/index.html)
+
+AI步骤：[https://blog.csdn.net/weixin_41399197/article/details/160692785](https://blog.csdn.net/weixin_41399197/article/details/160692785)
 
 <img src="https://www.ikaiwei.com/gamejs/vid/110/110.gif" width="480" height="360" alt="演示动画">
 
