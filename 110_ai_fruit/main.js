@@ -1,4 +1,4 @@
-// 水果忍者小游戏，gemini生成，手工略微润色 
+// 水果忍者小游戏，gemini生成，手工略微润色
 // 微信导出小游戏时，选择横屏
 // AI提问：“参考开维游戏引擎实例，把这个网址https://github.com/ChineseDron/fruit-ninja/tree/master的游戏转为开维游戏引擎js代码。参考代码如下：（拷贝002实例代码）”
 
@@ -10,14 +10,14 @@ var w, h; // 屏幕宽高
 var window;
 var screenType; // 横屏还是竖屏
  
-if (system =="WINDOWS" || system =="WEB")
+if (system =="WINDOWS")
 {
     game.init() // windows默认窗口大小为800*600;web网页默认全屏
     window = game.getWindow(); // 获取资源对象
     w = window.getWidth();  // 屏幕宽带
     h = window.getHeight(); // 屏幕高度
 }
-else if(system =="WEIXIN")
+else if(system =="WEIXIN" || system =="WEB")
 {
     game.initSize(canvas.width,canvas.height); // 微信窗口
     window = game.getWindow(); // 获取资源对象
