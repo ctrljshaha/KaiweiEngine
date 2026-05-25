@@ -8,12 +8,12 @@
 // --- 1. 初始化 ---
 var system = game.getSystemName();
 var w, h, window;
-if (system == "WINDOWS" || system == "WEB") {
+if (system == "WINDOWS") {
     game.initSize(700,800); 
     window = game.getWindow();
     w = window.getWidth();
     h = window.getHeight();
-} else if(system =="WEIXIN") {
+} else if(system =="WEIXIN" || system == "WEB") {
     game.initSize(canvas.width, canvas.height);
     window = game.getWindow();
     w = canvas.width;
