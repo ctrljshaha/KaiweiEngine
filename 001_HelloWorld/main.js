@@ -4,9 +4,7 @@
 var system = game.getSystemName(); // 获取系统名称
 if (system =="WINDOWS")
     game.init() // 默认窗口大小为800*600
-else if (system =="WEB")
-    game.init() // 默认为全屏 
-else if(system =="WEIXIN")
+else if (system =="WEB" || system =="WEIXIN")
     game.initSize(canvas.width,canvas.height); // 微信窗口。微信因为有大小限制，字体库需用工具精简大小
  
 // 设置帧率
