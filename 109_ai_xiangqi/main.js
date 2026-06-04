@@ -1,36 +1,62 @@
 // ==============================================================================================
-// 开维游戏引擎：中国象棋 (提示点精准对齐与走法逻辑版)
+// 开维游戏引擎：中国象棋 [竖屏] (提示点精准对齐与走法逻辑版)
 // gemini生成，根据github上的代码直接生成可运行的代码，后迭代修改。
 // AI提问：“参考开维游戏引擎实例，把这个网址https://github.com/wanghao221/moyu/tree/main/游戏-57.中国象棋的游戏转为开维游戏引擎js代码。参考代码如下：（拷贝002实例代码）”
 // AI算法优化过，增加了开局棋谱，但效果一般，如果需要增强，需要继续优化或者学习棋谱做训练库调用
 // ==============================================================================================
 
-// --- 1. 初始化 ---
-var system = game.getSystemName();
-var w, h, window;
-if (system == "WINDOWS") {
-    game.initSize(700,800); 
-    window = game.getWindow();
-    w = window.getWidth();
-    h = window.getHeight();
-} else if(system =="WEIXIN" || system == "WEB") {
-    game.initSize(canvas.width, canvas.height);
-    window = game.getWindow();
-    w = canvas.width;
-    h = canvas.height;
+// ----------------------------------------------------------------------------------------------
+// 初始化引擎与环境
+// ----------------------------------------------------------------------------------------------
+var system = game.getSystemName();         // 获取系统名称：WINDOWS、WEB、WEIXIN
+var webOS = game.getOS();                  // web页面所在的操作系统：Windows、macOS、Linux、Android、iOS、Unknown OS
+var webDeviceType = game.getDeviceType();  // web页面所在的设备类型：PC、Phone、Pad
+var webDpr = game.getDpr();                // web页面dpr值
+var w, h;       // 屏幕宽高
+var window;     // 窗口变量
+var screenType; // 横屏还是竖屏
+
+// 根据平台不同，设置屏幕分辨率
+if (system == "WINDOWS")                       // windows平台
+    game.init();                               // windows默认窗口大小为800*600，自适应
+else if (system == "WEIXIN")                   // 微信小游戏
+    game.initSize(canvas.width,canvas.height); // 微信窗口大小，默认横屏844*390，竖屏390*844
+else if (system == "WEB") {                    // web平台，导出网页或安卓
+    if (webDeviceType == "PC")                 // PC机上的浏览器
+        game.init();                           // windows下浏览器默认窗口大小为800*600，自适应
+    else if (webDeviceType == "Phone")         // 手机上的浏览器
+        game.initSize(canvas.width/webDpr,canvas.height/webDpr); // 安卓导出时的逻辑分辨率
 }
-game.setFPS(60);
+
+// 获取屏幕宽度和高度
+window = game.getWindow(); // 获取资源对象
+w = window.getWidth();     // 屏幕宽带
+h = window.getHeight();    // 屏幕高度
+screenType = (w>h)?"Landscape":"Portrait"; // 横屏Landscape 竖屏Portrait
+game.setFPS(60);           // 设置帧率
 
 // --- 2. 布局参数 ---
 var BOARD_W, BOARD_H, PIECE_SIZE;
-if (system == "WINDOWS" || system == "WEB") {
-     BOARD_W = 507;  // 象棋的棋盘宽507，高567
+if (system == "WINDOWS") {
+     BOARD_W = 507;                      // 象棋的棋盘宽507，高567
      BOARD_H = 567; 
-     PIECE_SIZE = 54; // 棋子正方形宽度54
+     PIECE_SIZE = 54;                    // 棋子正方形宽度54
 } else if(system =="WEIXIN"){
-     BOARD_W = w-20;  // 象棋的棋盘宽507，高567，根据这个比例算高度
+     BOARD_W = w-20;                     // 象棋的棋盘宽507，高567，根据这个比例算高度
      BOARD_H = BOARD_W*567/507; 
-     PIECE_SIZE = BOARD_W*54/507; // 棋子正方形宽度54，根据这个比例算大小
+     PIECE_SIZE = BOARD_W*54/507;        // 棋子正方形宽度54，根据这个比例算大小
+}
+else if (system == "WEB") {                   
+    if (webDeviceType == "PC") {         // PC机上的浏览器
+         BOARD_W = 507;                  // 象棋的棋盘宽507，高567
+         BOARD_H = 567; 
+         PIECE_SIZE = 54;                // 棋子正方形宽度54
+    }
+    else if (webDeviceType == "Phone") { // 手机上的浏览器
+         BOARD_W = w-20;                 // 象棋的棋盘宽507，高567，根据这个比例算高度
+         BOARD_H = BOARD_W*567/507; 
+         PIECE_SIZE = BOARD_W*54/507;    // 棋子正方形宽度54，根据这个比例算大小
+    }
 }
 
 const DOT_SIZE = 12; // 提示点大小，设置小一点
