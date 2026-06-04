@@ -10,42 +10,42 @@
 */
 
 /**
- * 开维游戏引擎 - 俄罗斯方块 (双重音效版)
+ * 开维游戏引擎 - 俄罗斯方块 (双重音效版) [竖屏]
  * 1. 消除行时播放 sound/1.wav
  * 2. 空格旋转方块时也播放 sound/1.wav (或你可以换成别的音效文件)
  */
  
- 
 // AI生成代码后，加手柄和变化按钮
-// 微信竖屏导出 
 
-
-// 初始化游戏引擎，根据平台设置屏幕分辨率
 // ----------------------------------------------------------------------------------------------
-var system = game.getSystemName(); // 获取系统名称
-var w, h; // 屏幕宽高
-var window;
+// 初始化引擎与环境
+// ----------------------------------------------------------------------------------------------
+var system = game.getSystemName();         // 获取系统名称：WINDOWS、WEB、WEIXIN
+var webOS = game.getOS();                  // web页面所在的操作系统：Windows、macOS、Linux、Android、iOS、Unknown OS
+var webDeviceType = game.getDeviceType();  // web页面所在的设备类型：PC、Phone、Pad
+var webDpr = game.getDpr();                // web页面dpr值
+var w, h;       // 屏幕宽高
+var window;     // 窗口变量
 var screenType; // 横屏还是竖屏
 
-if (system =="WINDOWS")
-{
-    //game.init() // windows默认窗口大小为800*600;web网页默认全屏
-    game.initSize(420, 750); 
-    window = game.getWindow(); // 获取资源对象
-    w = window.getWidth();  // 屏幕宽带
-    h = window.getHeight(); // 屏幕高度
-}
-else if(system =="WEIXIN" || system =="WEB")
-{
-    game.initSize(canvas.width,canvas.height); // 微信窗口
-    window = game.getWindow(); // 获取资源对象
-    w = canvas.width; // 微信窗口宽度
-    h = canvas.height;// 微信窗口高度
+// 根据平台不同，设置屏幕分辨率
+if (system == "WINDOWS")                       // windows平台
+    game.initSize(420, 750);                   // windows默认窗口大小为800*600，自适应
+else if (system == "WEIXIN")                   // 微信小游戏
+    game.initSize(canvas.width,canvas.height); // 微信窗口大小，默认横屏844*390，竖屏390*844
+else if (system == "WEB") {                    // web平台，导出网页或安卓
+    if (webDeviceType == "PC")                 // PC机上的浏览器
+        game.initSize(420, 750);               // windows下浏览器默认窗口大小为800*600，自适应
+    else if (webDeviceType == "Phone")         // 手机上的浏览器
+        game.initSize(canvas.width/webDpr,canvas.height/webDpr); // 安卓导出时的逻辑分辨率
 }
 
-// 判断横屏还是竖屏
+// 获取屏幕宽度和高度
+window = game.getWindow(); // 获取资源对象
+w = window.getWidth();     // 屏幕宽带
+h = window.getHeight();    // 屏幕高度
 screenType = (w>h)?"Landscape":"Portrait"; // 横屏Landscape 竖屏Portrait
-game.setFPS(60); // 设置帧率
+game.setFPS(60);           // 设置帧率
 
 // 设置窗口log和标题
 // ----------------------------------------------------------------------------------------------
@@ -55,12 +55,24 @@ window.setIcon(texture); // 设置窗口图标
 window.setTitle("开维游戏引擎 - 俄罗斯方块");
 
 
+// --- 动态屏幕适配比例因子 ---
+var scaleX = w / 420;
+var scaleY = h / 750;
+
 var scene = new Scene();
-var blockSize = 25;
+
+// 【最大化主网格】极限利用宽度，10列方块，每列扩大至 29 * scaleX
+var blockSize = 29 * scaleX; 
 var gridCols = 10;
 var gridRows = 20;
-var startX = 20; 
-var startY = 120;
+
+// 【布局优化】主网格起始 Y 坐标整体上移（由 60 提至 30），为底部的操控手柄空出更多垂直空间，彻底杜绝重叠
+var startX = 20 * scaleX; 
+var startY = 30 * scaleY;
+
+// 计算主网格实际占用的总宽高
+var gridWidth = gridCols * blockSize;
+var gridHeight = gridRows * blockSize;
 
 // --- 1. 音效类初始化 ---
 var audio = new Audio();
@@ -94,15 +106,17 @@ for (var r = 0; r < gridRows; r++) {
     }
 }
 
-var previewX = startX + (gridCols * blockSize) + 20;
-var previewY = startY + 50;
+// 【布局优化】右侧预览区域挪到靠右边的位置 (使用实际屏幕宽度 w 减去预览区自身宽度来动态计算)
+var previewX = w - 90 * scaleX; 
+var previewY = startY + 60 * scaleY;
 var previewNodes = [];
 for (var r = 0; r < 4; r++) {
     previewNodes[r] = [];
     for (var c = 0; c < 4; c++) {
         var n = new Node();
-        n.setSize(18, 18);
-        n.setPosition(previewX + c * 20, previewY + r * 20);
+        // 保持原本大小不改变
+        n.setSize(10 * scaleX, 10 * scaleX);
+        n.setPosition(previewX + c * 12 * scaleX, previewY + r * 12 * scaleY);
         scene.addNode(n);
         previewNodes[r][c] = n;
     }
@@ -110,30 +124,38 @@ for (var r = 0; r < 4; r++) {
 
 var labUI = new Label();
 labUI.setPosition(previewX, startY);
-labUI.setSize(200, 40);
-labUI.setFont("font/st.ttf", 22);
+labUI.setSize(180 * scaleX, 40 * scaleY);
+labUI.setFont("font/st.ttf", Math.round(14 * scaleY));
 labUI.setText("得分: 0");
 scene.addNode(labUI);
 
+// 【精准居中优化】计算 "GAME OVER" 在左侧游戏主窗口内的精确水平居中 X 坐标
+var gameOverWidth = 250 * scaleX;
+var gameOverX = startX + (gridWidth - gameOverWidth) / 2;
+
 var labGameOver = new Label();
-labGameOver.setPosition(startX, startY + 200);
-labGameOver.setSize(250, 60);
-labGameOver.setFont("font/st.ttf", 40);
+labGameOver.setPosition(gameOverX, startY + 200 * scaleY);
+labGameOver.setSize(gameOverWidth, 60 * scaleY);
+labGameOver.setFont("font/st.ttf", Math.round(35 * scaleY));
 labGameOver.setTextColor(1, 0, 0, 1);
 labGameOver.setText("GAME OVER");
 labGameOver.setHide(true);
 scene.addNode(labGameOver);
 
+// 同时将重新开始按钮也在左侧游戏主窗口内进行精确水平居中
+var btnRestartWidth = 150 * scaleX;
+var btnRestartX = startX + (gridWidth - btnRestartWidth) / 2;
+
 var btnRestart = new Sprite();
 var resBtn = game.getResource().getTexture("img/button.png"); 
 btnRestart.setTexture(resBtn);
-btnRestart.setPosition(startX + 50, startY + 280);
-btnRestart.setSize(150, 50);
+btnRestart.setPosition(btnRestartX, startY + 280 * scaleY);
+btnRestart.setSize(btnRestartWidth, 50 * scaleY);
 btnRestart.setHide(true);
 btnRestart.click(() => { restartGame(); });
 scene.addNode(btnRestart);
 
-// --- 核心逻辑 ---
+// --- 核心 logic ---
 var shapes = {
     'I': [[1,1,1,1]], 'L': [[1,0,0], [1,1,1]], 'J': [[0,0,1], [1,1,1]],
     'O': [[1,1], [1,1]], 'Z': [[1,1,0], [0,1,1]], 'S': [[0,1,1], [1,1,0]], 'T': [[0,1,0], [1,1,1]]
@@ -200,7 +222,7 @@ function clearLines() {
 function restartGame() {
     score = 0; level = 1; totalLinesCleared = 0; isGameOver = false;
     initGridData();
-    labUI.setText("得分: 0");
+    labUI.setText("得分: " + score);
     labGameOver.setHide(true);
     btnRestart.setHide(true);
     spawnPiece();
@@ -294,18 +316,27 @@ var texChange = res.getTexture("img/change.png");
 
 // 3. 手柄布局参数
 // ----------------------------------------------------------------------------------------------
-var sprW = 35;  
-var sprH = 35;  
-var gap  = 0;   
-var startX = (w > h) ? 20 : (w - sprW * 3 - gap * 2) / 2 + 135;
-var startY = h - (sprH * 3 + gap * 2) - 220;
+var sprW = 42 * scaleX;  
+var sprH = 42 * scaleX;  
+var gap  = 2 * scaleX;   
+var padX = (w - sprW * 3 - gap * 2) / 2; // 水平居中算法
+
+var handleStartX = (w > h) ? 20 * scaleX : padX;
+
+// 【完全消除重叠】显式增加底边安全留白（28 * scaleY），确保最高处的 sprChange 完美避开游戏网格最底端
+var handleStartY = startY + gridHeight + 28 * scaleY; 
+
+// 兜底安全限制：如果计算出的起始位置让手柄区域超出了屏幕，则让它严格贴在屏幕底端
+if (handleStartY + (sprH * 3 + gap * 2) > h) {
+    handleStartY = h - (sprH * 3 + gap * 2) - 10 * scaleY;
+}
 
 // --- 提前声明中心提示标签，方便 logic 函数调用 ---
 var labCenter = new Label();
 labCenter.setSize(sprW, sprH);
-labCenter.setPosition(startX + sprW + gap, startY + sprH + gap); 
+labCenter.setPosition(handleStartX + sprW + gap, handleStartY + sprH + gap); 
 labCenter.setText(" OK"); 
-labCenter.setFont("font/st.ttf", 16);
+labCenter.setFont("font/st.ttf", Math.round(16 * scaleY));
 labCenter.setTextColor(255, 255, 255, 1); 
 labCenter.setColor(255, 255, 255, 0.2); // 给中间加个淡淡的方块底色
 scene.addNode(labCenter);
@@ -357,39 +388,39 @@ function logic(dir) {
 // ----------------------------------------------------------------------------------------------
 // 【四个独立精灵按钮】
 // ----------------------------------------------------------------------------------------------
-// 增加一个转换按钮
+// 增加一个转换按钮 (已通过全局布局调整彻底移除重叠风险)
 var sprChange = new Sprite();
 sprChange.setTexture(texChange);
 sprChange.setSize(sprW, sprH);
-sprChange.setPosition(startX + sprW + gap, startY);
+sprChange.setPosition(handleStartX + sprW + gap, handleStartY);
 sprChange.click(() => { logic("change"); });
 scene.addNode(sprChange);
 
 //var sprUp = new Sprite();
 //sprUp.setTexture(texUp);
 //sprUp.setSize(sprW, sprH);
-//sprUp.setPosition(startX + sprW + gap, startY);
+//sprUp.setPosition(handleStartX + sprW + gap, handleStartY);
 //sprUp.click(() => { logic("up"); });
 //scene.addNode(sprUp);
 
 var sprDown = new Sprite();
 sprDown.setTexture(texDown);
 sprDown.setSize(sprW, sprH);
-sprDown.setPosition(startX + sprW + gap, startY + (sprH + gap) * 2);
+sprDown.setPosition(handleStartX + sprW + gap, handleStartY + (sprH + gap) * 2);
 sprDown.click(() => { logic("down"); });
 scene.addNode(sprDown);
 
 var sprLeft = new Sprite();
 sprLeft.setTexture(texLeft);
 sprLeft.setSize(sprW, sprH);
-sprLeft.setPosition(startX, startY + sprH + gap);
+sprLeft.setPosition(handleStartX, handleStartY + sprH + gap);
 sprLeft.click(() => { logic("left"); });
 scene.addNode(sprLeft);
 
 var sprRight = new Sprite();
 sprRight.setTexture(texRight);
 sprRight.setSize(sprW, sprH);
-sprRight.setPosition(startX + (sprW + gap) * 2, startY + sprH + gap);
+sprRight.setPosition(handleStartX + (sprW + gap) * 2, handleStartY + sprH + gap);
 sprRight.click(() => { logic("right"); });
 scene.addNode(sprRight);
 
@@ -405,7 +436,7 @@ game.run();
 
 ### 更新点说明：
 
-1. **消除反馈**：在 `clearLines` 函数中，只要有行被消除，就会调用 `audio.playSound("sound/1.wav")`。
+1. **消除反馈**：在 `clearLines` 函数中，只要有行被消除，就会调用 `audio.playSound("sound/1.wav")`幕。
 2. **操作反馈**：在 `game.setKeyCallBack` 监听空格键的分支里，如果旋转动作成功（即不发生碰撞），会同样播放音效。这样玩家在变换形状时能感到明显的“打击感”。
 3. **重新开始按钮**：依然保留，且确保重置后音效依然生效。
 
