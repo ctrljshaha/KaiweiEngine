@@ -18,12 +18,12 @@ var screenType; // 横屏还是竖屏
 
 // 根据平台不同，设置屏幕分辨率
 if (system == "WINDOWS")                       // windows平台
-    game.init();                               // windows默认窗口大小为800*600，自适应
+    game.initSize(700,800);                    // windows默认窗口大小为800*600，自适应
 else if (system == "WEIXIN")                   // 微信小游戏
     game.initSize(canvas.width,canvas.height); // 微信窗口大小，默认横屏844*390，竖屏390*844
 else if (system == "WEB") {                    // web平台，导出网页或安卓
     if (webDeviceType == "PC")                 // PC机上的浏览器
-        game.init();                           // windows下浏览器默认窗口大小为800*600，自适应
+        game.initSize(700,800);                // windows下浏览器默认窗口大小为800*600，自适应
     else if (webDeviceType == "Phone")         // 手机上的浏览器
         game.initSize(canvas.width/webDpr,canvas.height/webDpr); // 安卓导出时的逻辑分辨率
 }
