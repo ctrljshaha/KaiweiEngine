@@ -30,7 +30,7 @@ class Util{
         
         // 微信手机显示游戏手柄，控制上下左右键
         // ----------------------------------------------------------------------------------------------
-        if(system =="WEIXIN")
+        if(system =="WEIXIN" || (system =="WEB" && webDeviceType == "Phone"))
         {
             // 上下左右按钮图
             var texUp    = res.getTexture("up.png");
