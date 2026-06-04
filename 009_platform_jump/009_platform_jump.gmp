@@ -1,0 +1,14 @@
+{
+    "file": {
+        "n": [
+            "main.js",
+            "PlatformJump.js",
+            "util.js",
+            "GlobalVariable.js",
+            "physics.js"
+        ]
+    },
+    "proName": "009_platform_jump",
+    "scene": {
+    }
+}
