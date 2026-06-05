@@ -19,7 +19,7 @@ else if (system == "WEIXIN")                   // 微信小游戏
 else if (system == "WEB") {                    // web平台，导出网页或安卓
     if (webDeviceType == "PC")                 // PC机上的浏览器
         game.init();                           // windows下浏览器默认窗口大小为800*600，自适应
-    else if (webDeviceType == "Phone")         // 手机上的浏览器
+    else if (webDeviceType == "Phone" || webDeviceType == "Pad") // 手机pad上的浏览器
         game.initSize(canvas.width/webDpr,canvas.height/webDpr); // 安卓导出时的逻辑分辨率
 }
  
