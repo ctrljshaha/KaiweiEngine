@@ -1,5 +1,5 @@
-// 平台跳跃 [横屏] 物理碰撞引擎
 
+// 平台跳跃 [横屏] 物理引擎演示
 
 // ----------------------------------------------------------------------------------------------
 // 初始化引擎与环境
@@ -20,7 +20,7 @@ else if (system == "WEIXIN")                   // 微信小游戏
 else if (system == "WEB") {                    // web平台，导出网页或安卓
     if (webDeviceType == "PC")                 // PC机上的浏览器
         game.init();                           // windows下浏览器默认窗口大小为800*600，自适应
-    else if (webDeviceType == "Phone")         // 手机上的浏览器
+    else if (webDeviceType == "Phone" || webDeviceType == "Pad") // 手机pad上的浏览器
         game.initSize(canvas.width/webDpr,canvas.height/webDpr); // 安卓导出时的逻辑分辨率
 }
 
@@ -31,6 +31,7 @@ h = window.getHeight();    // 屏幕高度
 screenType = (w>h)?"Landscape":"Portrait"; // 横屏Landscape 竖屏Portrait
 game.setFPS(20);           // 设置帧率
 
+
 // 游戏主窗口设置图标和标题
 // ----------------------------------------------------------------------------------------------
 var texture = game.getResource().getTexture("logo.png"); // 获取纹理数据对象
@@ -39,7 +40,8 @@ window.setTitle("开维游戏引擎 - 平台跳跃"); // 设置主游戏窗口�
 
 // 开始游戏
 try {
-    new PlatformJump();
+    let platformJump = new PlatformJump();
+    GlobalVariable.platformJump = platformJump;
 
 }catch (e) {
     console.log(JSON.stringify(e))

@@ -32,6 +32,41 @@ class Util{
         node.setColor(1,1,1,1);
         scene.addNode(node);
 
+        let pressx = 0, pressy = 0;
+        scene.onPress((x,y)=>{
+            pressx = x;
+            pressy = y;
+        });
+        scene.onRelease((x,y)=>{
+            const ox = x - pressx;
+            const oy = y - pressy;
+            let type = "";
+            if( Math.abs(ox)>Math.abs(oy)){
+                //左右
+                if(ox>0){
+                    //右
+                    type =  "right";
+                }
+                else{
+                    type =  "left";
+                }
+            }
+            else {
+                //上下
+                if(oy>0){
+                    //下
+                    type =  "down";
+                }
+                else{
+                    type = "up";
+                }
+            }
+
+            //log(type);
+            GlobalVariable.platformJump.changePos(type)
+        });
+
+
         // 返回场景对象
         return {scene:scene,backgroundNode:node};
     }

@@ -9,6 +9,8 @@ class GlobalVariable {
     static KEY_UP = 38;
     static KEY_LEFT = 37;
     static KEY_RIGHT = 39;
+    static KEY_SPACE = 32;
+    static KEY_ESC = 27;
 
     // 场景
     static scene;
@@ -17,6 +19,8 @@ class GlobalVariable {
     static gameOver = false;
 
     static defaultSoundPath = "sound/special/da.mp3";
+
+    static platformJump;
 
 
 }

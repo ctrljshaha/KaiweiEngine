@@ -1,5 +1,3 @@
-
-
 class PlatformJump{
 
     constructor(){
@@ -34,7 +32,7 @@ class PlatformJump{
         // 键盘事件
         game.setKeyCallBack((key,action)=>{
             let type = "";
-            if (key == GlobalVariable.KEY_W || key == GlobalVariable.KEY_UP){
+            if (key == GlobalVariable.KEY_W || key == GlobalVariable.KEY_UP || key == GlobalVariable.KEY_SPACE){
                 type = "up";
             }
             if (key == GlobalVariable.KEY_S || key == GlobalVariable.KEY_BOTTOM){
@@ -185,7 +183,6 @@ class PlatformJump{
 
         return hero;
     }
-
 
     // 创建星星
     createStar(){
